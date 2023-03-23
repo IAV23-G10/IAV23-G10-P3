@@ -101,11 +101,13 @@ En la escena de apertura se puede observar un mapa que muestra todas las habitac
 Lo que vamos a realizar para resolver esta práctica es implementar el comportamiento de los diferentes Scripts:
 
 **PLANTEAMINETO INICIAL**: </br>
-- **Merodear:** Perteneciente únicamente al minotauro para que tenga un movimiento errático y desordenado. </br>
-- **Persecución:** Perteneciente únicamente al minotauro para que persiga al jugador con predicción. </br>
-- **Minotauro Control:** Perteneciente únicamente al minotauro para que pueda cambiar entre el estado de merodeo y persecución. </br>
-- **Jugador Control:** Perteneciente únimamente al jugador para moverlo con el ratón. </br>
-- **A-star:** Perteneciente al jugador para que puedar encontrar de forma automática la salida al laberinto. </br>
+- **SiguePersonaje:** Usaremos este comportamiento para mover tanto a la cantante como al fantasma, ya sea para que persigan otro personaje o una posicion concreta del mapa (Ej: El fantasma va a una palanca / La cantante va a las bambalinas)
+
+Para el manejo de los comportamientos de la **cantante** usaremos una maquina de estados programada en c# haciendo uso de enumeradores para los nombres de los estados
+
+Para el manejo de los comportamientos del **fantasma** haremos uso de la herramienta de "Behaviour tree" para controlar los diferentes estados
+
+Para el manejo de los comportamientos del **publico** haremos uso de la herramienta de "Behaviour tree" para controlar los diferentes estados
 
 ### MÁQUINA DE ESTADOS CANTANTE
 
