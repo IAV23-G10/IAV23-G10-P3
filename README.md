@@ -120,6 +120,10 @@ class MyFSM:
             myState = DEFEND
 
 ```
+Boceto de lo que se intuye que vamos a realizar:</br></br>
+<p align="center">
+  <img src="https://github.com/IAV23-G10/IAV23-G10-P3/blob/main/Assets/ImagesForReadme/image.png" width="600" />
+</p>
  (Pag 342.AI for Games)
 
  ### ÁRBOL DE COMPORTAMIENTO 
@@ -254,7 +258,5 @@ Las tareas se han realizado y el esfuerzo ha sido repartido entre los autores.
 Los recursos de terceros utilizados son de uso público.
 
 - *AI for Games*, Ian Millington.
-- [Kaykit Medieval Builder Pack](https://kaylousberg.itch.io/kaykit-medieval-builder-pack)
-- [Kaykit Dungeon](https://kaylousberg.itch.io/kaykit-dungeon)
-- [Kaykit Animations](https://kaylousberg.itch.io/kaykit-animations)
+
 
