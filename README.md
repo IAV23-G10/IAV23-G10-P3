@@ -61,10 +61,12 @@ Se parte de un proyecto base de Unity proporcionado por el profesor aquí:
 Se siguen usando el ComportamientoAgente y Agente ya mencionados en la [PRÁCTICA 1](https://github.com/IAV23-G10/IAV23-G10-P1/tree/main/IAV-P1-main)</br>
 
 En la escena de apertura se puede observar un mapa que muestra todas las habitaciones previamente mencionadas junto con sus respectivos pasillos. También se pueden ver modelos de los espectadores, el vizconde, el fantasma y la cantante, así como objetos interactivos como el piano, las palancas y las barcas. En cuanto a los scripts, hay varias clases, entre ellas:</br>
-- **Game Blackboard** : que contiene información sobre las habitaciones del mapa y las palancas. La clase Player se encarga de gestionar las acciones del vizconde, mientras que la clase Cantante se encarga del comportamiento y movimiento de la cantante. </br>
+- **Game Blackboard** : que contiene información sobre las habitaciones del mapa y las palancas. La clase Player se encarga de gestionar las acciones del vizconde, mientras que la clase Cantante se encarga del comportamiento y movimiento de la cantante.</br>
+
 - **CameraManager**: se encarga de gestionar los diferentes puntos de vista en el escenario.</br>
+
 Por último, los personajes cuentan con NavMesh, StateManager y Behaviour Tree, que se encargan de tomar decisiones y gestionar el movimiento por el mapa.
- El jugador controla a un personaje 3D con la habilidad de moverse en el plano XZ de forma uniforme, para ello se utiliza el raton (click izquierdo). También la escena dispone del agente cantante y el agente fantasma, que de momento no hacen nada.<br />
+El jugador controla a un personaje 3D con la habilidad de moverse en el plano XZ de forma uniforme, para ello se utiliza el raton (click izquierdo). También la escena dispone del agente cantante y el agente fantasma, que de momento no hacen nada.<br />
 
 
 ## Diseño de la solución
@@ -87,37 +89,38 @@ Lo que vamos a realizar para resolver esta práctica es implementar el comportam
 El pseudocódigo del algoritmo de MÁQINA DE ESTADOS CANTANTE utilizado es:
 ```python
 class MyFSM:
-            # Define the names for each state.
-            enum State:
-                 PATROL
-                 DEFEND
-                 SLEEP
 
-            # The current state.
-            myState: State
+    # Define the names for each state.
+    enum State:
+         PATROL
+         DEFEND
+         SLEEP
 
-            function update():
-                        # Find the correct state.
-                        if myState == PATROL:
-                                    # Example transitions.
-                                    if canSeePlayer():
-                                                myState = DEFEND
-                                    else if tired():
-                                                myState = SLEEP
+    # The current state.
+    myState: State
 
-                        else if myState == DEFEND:
-                                    # Example transitions.
-                                    if not canSeePlayer():
-                                                myState = PATROL
+    function update():
+        # Find the correct state.
+        if myState == PATROL:
+             # Example transitions.
+             if canSeePlayer():
+                     myState = DEFEND
+             else if tired():
+                     myState = SLEEP
 
-                        else if myState == SLEEP:
-                                    # Example transitions.
-                                    if not tired():
-                                                myState = PATROL
+        else if myState == DEFEND:
+             # Example transitions.
+             if not canSeePlayer():
+                     myState = PATROL
 
-            function notifyNoiseHeard(volume: float):
-            if myState == SLEEP and volume > 10:
-            myState = DEFEND
+        else if myState == SLEEP:
+             # Example transitions.
+             if not tired():
+                     myState = PATROL
+
+    function notifyNoiseHeard(volume: float):
+        if myState == SLEEP and volume > 10:
+                 myState = DEFEND
 
 ```
 Boceto de lo que se intuye que vamos a realizar:</br></br>
@@ -128,48 +131,48 @@ Boceto de lo que se intuye que vamos a realizar:</br></br>
 
  ### ÁRBOL DE COMPORTAMIENTO 
  
-El pseudocódigo del algoritmo de generadorLaberinto es:
+El pseudocódigo del algoritmo de ÁRBOL DE COMPORTAMIENTO es:
 
 ```python
 
 class DecisionTreeNode:
-# Recursively walk through the tree.
-function makeDecision() -> DecisionTreeNode
+    # Recursively walk through the tree.
+    function makeDecision() -> DecisionTreeNode
 
 class Action extends DecisionTreeNode:
-function makeDecision() -> DecisionTreeNode:
-return this
+    function makeDecision() -> DecisionTreeNode:
+       return this
 
 class Decision extends DecisionTreeNode:
-trueNode: DecisionTreeNode
-falseNode: DecisionTreeNode
+    trueNode: DecisionTreeNode
+    falseNode: DecisionTreeNode
 
-# Defined in subclasses, with the appropriate type.
-function testValue() -> any
+    # Defined in subclasses, with the appropriate type.
+    function testValue() -> any
 
-# Perform the test.
-function getBranch() -> DecisionTreeNode
+    # Perform the test.
+    function getBranch() -> DecisionTreeNode
 
-# Recursively walk through the tree.
-function makeDecision() -> DecisionTreeNode
+    # Recursively walk through the tree.
+    function makeDecision() -> DecisionTreeNode
 
 class FloatDecision extends Decision:
-minValue: float
-maxValue: float
+    minValue: float
+    maxValue: float
 
-function testValue() -> float
+    function testValue() -> float
 
-function getBranch() -> DecisionTreeNode:
-if maxValue >= testValue() >= minValue:
-return trueNode
-else:
-return falseNode
+    function getBranch() -> DecisionTreeNode:
+       if maxValue >= testValue() >= minValue:
+           return trueNode
+       else:
+           return falseNode
 
 ```
 
 ### MERODEAR
 
-El pseudocódigo del algoritmo de merodear es:
+El pseudocódigo del algoritmo de MERODEAR es:
 
 ```python
 class KinematicWander:
