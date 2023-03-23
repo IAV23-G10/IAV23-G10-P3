@@ -94,222 +94,84 @@ Lo que vamos a realizar para resolver esta práctica es implementar el comportam
 - **Persecución:** La persecución reusaria tambien el algoritmo A* para seguir al jugador encontrando el mejor camino, sin colisionar ni hacer raycast con las paredes. </br>
 - **Jugador Control:** Al hacer click en una casilla que no sea una pared, el jugador usa el algoritmo A* para encontrar el camino mas corto hacia su casilla destino, una vez llega, se queda esperando. </br>
 
-### A*
+### MÁQUINA DE ESTADOS CANTANTE
 
-El pseudocódigo del algoritmo de A* utilizado es:
+El pseudocódigo del algoritmo de MÁQINA DE ESTADOS CANTANTE utilizado es:
 ```python
- function pathfindAStar(graph: Graph,
- start: Node,
- end: Node,
- heuristic: Heuristic
- ) -> Connection[]:
- # This structure is used to keep track of the
- # information we need for each node.
- class NodeRecord:
-node: Node
- connection: Connection
- costSoFar: float
- estimatedTotalCost: float
+class MyFSM:
+            # Define the names for each state.
+            enum State:
+                 PATROL
+                 DEFEND
+                 SLEEP
 
- # Initialize the record for the start node.
- startRecord = new NodeRecord()
- startRecord.node = start
- startRecord.connection = null
- startRecord.costSoFar = 0
- startRecord.estimatedTotalCost = heuristic.estimate(start)
+            # The current state.
+            myState: State
 
- # Initialize the open and closed lists.
- open = new PathfindingList()
- Chapter 4 Pathfinding
- open += startRecord
- closed = new PathfindingList()
+            function update():
+                        # Find the correct state.
+                        if myState == PATROL:
+                                    # Example transitions.
+                                    if canSeePlayer():
+                                                myState = DEFEND
+                                    else if tired():
+                                                myState = SLEEP
 
- # Iterate through processing each node.
- while length(open) > 0:
- # Find the smallest element in the open list (using the
- # estimatedTotalCost).
- current = open.smallestElement()
+                        else if myState == DEFEND:
+                                    # Example transitions.
+                                    if not canSeePlayer():
+                                                myState = PATROL
 
- # If it is the goal node, then terminate.
- if current.node == goal:
- break
+                        else if myState == SLEEP:
+                                    # Example transitions.
+                                    if not tired():
+                                                myState = PATROL
 
- # Otherwise get its outgoing connections.
- connections = graph.getConnections(current)
-
- # Loop through each connection in turn.
- for connection in connections:
- # Get the cost estimate for the end node.
- endNode = connection.getToNode()
- endNodeCost = current.costSoFar + connection.getCost()
-
- # If the node is closed we may have to skip, or remove it
- # from the closed list.
- if closed.contains(endNode):
- # Here we find the record in the closed list
- # corresponding to the endNode.
- endNodeRecord = closed.find(endNode)
-
- # If we didn’t find a shorter route, skip.
- if endNodeRecord.costSoFar <= endNodeCost:
- continue
-
- # Otherwise remove it from the closed list.
- closed -= endNodeRecord
-
- # We can use the node’s old cost values to calculate
- # its heuristic without calling the possibly expensive
- # heuristic function.
- endNodeHeuristic = endNodeRecord.estimatedTotalCost -
- endNodeRecord.costSoFar
-
- # Skip if the node is open and we’ve not found a better
- # route.
- else if open.contains(endNode):
- # Here we find the record in the open list
- # corresponding to the endNode.
- endNodeRecord = open.find(endNode)
-
- # If our route is no better, then skip.
- if endNodeRecord.costSoFar <= endNodeCost:
- continue
-
- # Again, we can calculate its heuristic.
- endNodeHeuristic = endNodeRecord.cost -
- endNodeRecord.costSoFar
-
- # Otherwise we know we’ve got an unvisited node, so make a
- # record for it.
- else:
- endNodeRecord = new NodeRecord()
- endNodeRecord.node = endNode
-
- # We’ll need to calculate the heuristic value using
- # the function, since we don’t have an existing record
- # to use.
- endNodeHeuristic = heuristic.estimate(endNode)
-
- # We’re here if we need to update the node. Update the
- # cost, estimate and connection.
- endNodeRecord.cost = endNodeCost
- endNodeRecord.connection = connection
- endNodeRecord.estimatedTotalCost = endNodeCost +
-endNodeHeuristic
-
- # And add it to the open list.
- if not open.contains(endNode):
- open += endNodeRecord
-
- # We’ve finished looking at the connections for the current
- # node, so add it to the closed list and remove it from the
- # open list.
- open -= current
- closed += current
-
- # We’re here if we’ve either found the goal, or if we’ve no more
- # nodes to search, find which.
- if current.node != goal:
- # We’ve run out of nodes without finding the goal, so there’s
- # no solution.
- return null
-
- else:
- # Compile the list of connections in the path.
- Chapter 4 Pathfinding
- path = []
-
- # Work back along the path, accumulating connections.
- while current.node != start:
- path += current.connection
- current = current.connection.getFromNode()
-
- # Reverse the path, and return it.
- return reverse(path)
+            function notifyNoiseHeard(volume: float):
+            if myState == SLEEP and volume > 10:
+            myState = DEFEND
 
 ```
- (Pag 240.AI for Games)
+ (Pag 342.AI for Games)
+
+ ### ÁRBOL DE COMPORTAMIENTO 
  
-La funcion pathFindStar utiliza la clase NodeRecord para almacenar información útil en cada casilla para el calculo del path, con variables como el coste real hasta el origen, la estimación hasta la meta y la conexión con la casilla desde la que se ha calculado el camino. </br>
-Utiliza 2 listas para el orden de prioridad de procesamiento de casillas, una para las que se va a procesar, y otra con las ya procesadas
-Para el calculo del camino utilizara un bucle del que solo se podrá salir con la condición de que el nodo que se esta procesando sea el nodo meta.
-Empezara procesando la casilla inicial, recorre sus conexiones y calcula los costes a esas casillas, entonces comprueba si la casilla ya ha sido procesada o todavia merece la pena seguir con esa casilla estimando su coste total, en caso de no valer la pena por el alto coste, se salta la casilla. Si el nodo es apto, se crea y se añade a la lista open. </br>
-Una vez que se han recorrido todas las conexiones, se mete el Nodo en la lista de nodos cerrados (close).
-Despues comprobar si hay mas nodos, si no hay mas y no se ha encontrado la salida, no hay solución (se devuelve null).
-
- ### Generador de laberinto
-
 El pseudocódigo del algoritmo de generadorLaberinto es:
 
 ```python
-function maze(level: Level, start: Location):
- # A stack of locations we can branch from.
- locations = [start]
- level.startAt(start)
 
- while locations:
- current = locations.top()
+class DecisionTreeNode:
+# Recursively walk through the tree.
+function makeDecision() -> DecisionTreeNode
 
-# Try to connect to a neighboring location.
- next = level.makeConnection(current)
- if next:
- # If successful, it will be our next iteration.
- locations.push(next)
- else:
- locations.pop()
+class Action extends DecisionTreeNode:
+function makeDecision() -> DecisionTreeNode:
+return this
 
+class Decision extends DecisionTreeNode:
+trueNode: DecisionTreeNode
+falseNode: DecisionTreeNode
 
+# Defined in subclasses, with the appropriate type.
+function testValue() -> any
 
- class Level:
- function startAt(location: Location)
-function makeConnection(location: Location) -> Location
+# Perform the test.
+function getBranch() -> DecisionTreeNode
 
- class Location:
- x: int
- y: int
+# Recursively walk through the tree.
+function makeDecision() -> DecisionTreeNode
 
- class Connections:
- inMaze: bool = false
-directions: bool[4] = [false, false, false, false]
+class FloatDecision extends Decision:
+minValue: float
+maxValue: float
 
-class GridLevel:
- # dx, dy, and index into the Connections.directions array.
- NEIGHBORS = [(1, 0, 0), (0, 1, 1), (0, -1, 2), (-1, 0, 3)]
+function testValue() -> float
 
- width: int
- height: int
- cells: Connections[width][height]
-
- function startAt(location: Location):
- cells[location.x][location.y].inMaze = true
-
- function canPlaceCorridor(x: int, y: int, dirn :int) -> bool:
- # Must be in-bounds and not already part of the maze.
- return 0 <= x < width and
- 0 <= y < height and
- not cells[x][y].inMaze
-
- function makeConnection(location: Location) -> Location:
- # Consider neighbors in a random order.
- neighbors = shuffle(NEIGHBORS)
-
- x = location.x
- y = location.y
- for (dx, dy, dirn) in neighbors:
-
- # Check if that location is valid.
- nx = x + dx
- ny = y + dy
- fromDirn = 3 - dirn
- if canPlaceCorridor(nx, ny, fromDirn):
- # Perform the connection.
- cells[x][y].directions[dirn] = true
- cells[nx][ny].inMaze = true
- cells[nx][ny].directions[fromDirn] = true
- return Location(nx, ny)
-
- # null of the neighbors were valid.
- return null
-
+function getBranch() -> DecisionTreeNode:
+if maxValue >= testValue() >= minValue:
+return trueNode
+else:
+return falseNode
 
 ```
 
