@@ -152,6 +152,20 @@ Boceto de lo que se intuye que vamos a realizar:</br></br>
   <img src="https://github.com/IAV23-G10/IAV23-G10-P3/blob/main/Assets/ImagesForReadme/image.png" width="600" />
 </p>
  (Pag 342.AI for Games)
+ 
+ 
+ ### MÁQUINA DE ESTADOS FANTASMA
+ Boceto de lo que se intuye que vamos a realizar:</br></br>
+ <p align="center">
+  <img src="https://github.com/IAV23-G10/IAV23-G10-P3/blob/main/Assets/ImagesForReadme/Fantasma_MaquinaEstados.png" width="600" />
+</p>
+ 
+ ### MÁQUINA DE ESTADOS MIEMBRO DEL PÚBLICO
+ Boceto de lo que se intuye que vamos a realizar:</br></br>
+ <p align="center">
+  <img src="https://github.com/IAV23-G10/IAV23-G10-P3/blob/main/Assets/ImagesForReadme/Publico_MaquinaEstados.png" width="600" />
+</p>
+
 
  ### ÁRBOL DE COMPORTAMIENTO 
  
