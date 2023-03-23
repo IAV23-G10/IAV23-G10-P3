@@ -58,39 +58,14 @@ Sala de música (M). Estancia inicial del fantasma, donde le gusta pasar tiempo 
 Se parte de un proyecto base de Unity proporcionado por el profesor aquí:
 (https://github.com/Narratech/IAV-Decision)
 
-En el proyecto inicial, el jugador controla a un personaje 3D con la habilidad de moverse en el plano XZ de forma uniforme, para ello se utilizan los inputs WASD o las flechas. También la escena dispone del agente minotauro que demomento no hace nada.<br />
+Se siguen usando el ComportamientoAgente y Agente ya mencionados en la [PRÁCTICA 1](https://github.com/IAV23-G10/IAV23-G10-P1/tree/main/IAV-P1-main)</br>
 
-- **Llegada:** Lo que hace es ralentizar al agente que lo posee hasta pararse cuando este va hacia el target.
+En la escena de apertura se puede observar un mapa que muestra todas las habitaciones previamente mencionadas junto con sus respectivos pasillos. También se pueden ver modelos de los espectadores, el vizconde, el fantasma y la cantante, así como objetos interactivos como el piano, las palancas y las barcas. En cuanto a los scripts, hay varias clases, entre ellas:</br>
+- **Game Blackboard** : que contiene información sobre las habitaciones del mapa y las palancas. La clase Player se encarga de gestionar las acciones del vizconde, mientras que la clase Cantante se encarga del comportamiento y movimiento de la cantante. </br>
+- **CameraManager**: se encarga de gestionar los diferentes puntos de vista en el escenario.</br>
+Por último, los personajes cuentan con NavMesh, StateManager y Behaviour Tree, que se encargan de tomar decisiones y gestionar el movimiento por el mapa.
+ El jugador controla a un personaje 3D con la habilidad de moverse en el plano XZ de forma uniforme, para ello se utiliza el raton (click izquierdo). También la escena dispone del agente cantante y el agente fantasma, que de momento no hacen nada.<br />
 
-- **Slow:** Se usa para que cuando el jugador entre en el radio de acción este se ralentice.
-
-- **MinoCollision:** Reinicia la escena si colisiona con el jugador (pierde).
-
-- **MinoEvader:** Evita que el minotauro detecte la colsion con otras entidades distintas al jugador.
-
-- **MinoManager:** Instancia minotauros dentro de casillas válidas.
-
-- **SegirCamino:** Sigue el camino elegido por A*.
-
-- **ControlJugador:** Coge el input para mover al jugador.
-
-- **Teseo:** Combina los componentes de ControlJugador y SeguirCamino para poder moverlo y hacerlo que siga el camino. También puede activar y desactivar el hilo.
-
-- **Graph:** Esta clase sirve para implementar un grafo. Tiene el método principal de la práctica GetPathAStar() que habrá que definir haciendo uso de otros métodos como la Heurítica, GetNeighbours para recorrer adyacentes o BuildPath que reconstruye el path final desde el destino hasta el origen.
-
-- **GraphGrid:** Genera un mapa a partir de un archiv .map.
-
-- **Vertex:** Operaciones de los vértices del grafo para poder compararlos a la hora de construir el camino más óptimo.
-
-- **BinaryHeap:** Template una cola de prioridad.
-
-- **Node:** Operaciones de los nodos del grafo para poder compararlos a la hora de construir el camino más óptimo.
-
-- **Componente ComportamientoAgente:** El minotauro y el jugador porseen este componente.Esta clase se encarga de actualizar la posicion segun la direccion.Para determinar la dirección tiene en cuenta los boolenaos combinar por peso y por prioridad.<br /><br />
-            &emsp; **1. `Combinar por peso`**: actualiza la direccion modificando el modulo.<br />
-            &emsp; **2. `Combinar por prioridad`**: modifica la direccion dependiendo del factor de prioridad.<br /><br />
-            
-- **Componente Agente:**  El minotauro y el jugador porseen este componente. Por un lado, se encarga de aplicar el movimiento a los objetos dinámicos (FixedUpdate) y cinemáticos (Update), limitando en ambos las velocidades lineal y angular y la aceleración en los dinámicos.
 
 ## Diseño de la solución
 Lo que vamos a realizar para resolver esta práctica es implementar el comportamiento de los diferentes Scripts:
@@ -260,16 +235,16 @@ Las tareas se han realizado y el esfuerzo ha sido repartido entre los autores.
 
 | Estado  |  Tarea  |  Fecha  |  
 |:-:|:--|:-:|
-| ✔ | Diseño: Primer borrador | 28-2-2023 |
-| :x: | Característica A: movimiento con click izquierdo del ratón | - |
-| :x: | Característica B: Minotauro merodeo| - |
-| :x: | Característica B: Minotauro seguimiento cuando detecta al jugador| - |
-| :x: | Característica C: Camino más corto a la baldosa de salida calculado mediante A*| - |
-| :x: | Característica D: suavizar o no el camino generado| - |
+| ✔ | Diseño: Primer borrador | 23-3-2023 |
+| :x: | Característica A: movimiento con click izquierdo del ratón y click derecho para interactuar | - |
+| :x: | Característica B: Caida de la lampara y movimiento espectadores| - |
+| :x: | Característica C: Maquina de estados cantante| - |
+| :x: | Característica D: Árbol de comportamiento fantasma| - |
+| :x: | Característica E: Sistema sensorial fantasma| - |
 | :x: | Característica E: personaje navega y se mueve automáticamente en dirección a la baldosa| - |
 |   | ... | |
 |  | OPCIONAL |  |
-| :x: | Generador del laberinto | - |
+| :x: |   Ésstetica proyecto | - |
 | :x: |  | - |
 | :x: |  | - |
 
