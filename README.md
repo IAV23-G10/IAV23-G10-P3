@@ -61,13 +61,41 @@ Se parte de un proyecto base de Unity proporcionado por el profesor aquí:
 Se siguen usando el ComportamientoAgente y Agente ya mencionados en la [PRÁCTICA 1](https://github.com/IAV23-G10/IAV23-G10-P1/tree/main/IAV-P1-main)</br>
 
 En la escena de apertura se puede observar un mapa que muestra todas las habitaciones previamente mencionadas junto con sus respectivos pasillos. También se pueden ver modelos de los espectadores, el vizconde, el fantasma y la cantante, así como objetos interactivos como el piano, las palancas y las barcas. En cuanto a los scripts, hay varias clases, entre ellas:</br>
-- **Game Blackboard** : que contiene información sobre las habitaciones del mapa y las palancas. La clase Player se encarga de gestionar las acciones del vizconde, mientras que la clase Cantante se encarga del comportamiento y movimiento de la cantante.</br>
+- **Game Blackboard** : contiene las referencias a las habitaciones del mapa así como a todas las variables del mundo. También permite hacer saber al fantasma la palanca que tiene que tocar y la elección de la habitación en la que tiene que buscar a la cantante. 
 
-- **CameraManager**: se encarga de gestionar los diferentes puntos de vista en el escenario.</br>
+- **Player** : permite controlar las acciones del vizconde.</br>
 
-Por último, los personajes cuentan con NavMesh, StateManager y Behaviour Tree, que se encargan de tomar decisiones y gestionar el movimiento por el mapa.
-El jugador controla a un personaje 3D con la habilidad de moverse en el plano XZ de forma uniforme, para ello se utiliza el raton (click izquierdo). También la escena dispone del agente cantante y el agente fantasma, que de momento no hacen nada.<br />
+- **CameraManager**: permite controlar el cambio de cámara para visualizar distintas estancias del mapa.</br>
 
+- **SiguePersonaje** : permite que la cantante persiga a quien se le asigne.</br>
+
+- **SotanosTrigger** : permite avisar al BlackBoard cuando el fantasma está en el sótano.</br>
+
+- **BarcaTrigger** : permite que el fantasma o el vizconde puedan pasar al otro lado si está la barca, si no lo está se llama a la barca para que cambie de lado y poder transportarlos.</br>
+
+- **Publico** : permite controlar si el público debería huir o quedarse en el patio de butacas.</br>
+
+- **Accion** : permite ver si se ha interactuado con un piano,palanca o puerta.</br>
+
+- **PalancaPuerta** : permite abrir y cerrar la puerta de la celda, actualizando BlackBoard.</br>
+
+- **CantanteCondition** : permite al fantasma saber si la cantante está cantando en el escenario.</br>
+
+- **ControlPiano** : hace sonar el piano si este colisiona con otro objeto.</br>
+
+- **GhostArreglaPianoAction** : permiter al fantasma arreglar el piano.</br>
+
+- **GhostCloseDoorAction** : acción de cerrar la puerta de la celda.</br>
+
+- **GhostLlevarCantante** : acción de ir a por la cantante para raptarla.</br>
+
+- **GhostSearchRandomAction** : permite al fantasma ir a una sala random establecida en BlackBoard.</br>
+
+- **ImprisonedCondition** : permite al fantasma saber si la cantante está en la celda.</br>
+
+- **CantanteFSM** : toma de decisiones de la cantante a través de la máquina de estados.</br>
+
+- **GhostBehavior** : toma de decisiones del fantasma a través de árbol de comportamiento.</br>
 
 ## Diseño de la solución
 Lo que vamos a realizar para resolver esta práctica es implementar el comportamiento de los diferentes Scripts:
@@ -78,15 +106,11 @@ Lo que vamos a realizar para resolver esta práctica es implementar el comportam
 - **Minotauro Control:** Perteneciente únicamente al minotauro para que pueda cambiar entre el estado de merodeo y persecución. </br>
 - **Jugador Control:** Perteneciente únimamente al jugador para moverlo con el ratón. </br>
 - **A-star:** Perteneciente al jugador para que puedar encontrar de forma automática la salida al laberinto. </br>
-            
-**PLANTEAMIENTO FINAL**: De forma opcional y final nos gustaria añadir lo siguiente </br> 
-- **Merodear:** El merodeo del minotauro pasaría a funcionar de manera que se elija una casilla aleatoria en un rango cerca de la posicion del minotauro, el minotauro reusara entonces el algoritmo de A* para llegar a esa casilla. Cuando llegue a su destino, espera unos segundos antes de elegir de nuevo una casilla aleatoria. </br> 
-- **Persecución:** La persecución reusaria tambien el algoritmo A* para seguir al jugador encontrando el mejor camino, sin colisionar ni hacer raycast con las paredes. </br>
-- **Jugador Control:** Al hacer click en una casilla que no sea una pared, el jugador usa el algoritmo A* para encontrar el camino mas corto hacia su casilla destino, una vez llega, se queda esperando. </br>
 
 ### MÁQUINA DE ESTADOS CANTANTE
 
 El pseudocódigo del algoritmo de MÁQINA DE ESTADOS CANTANTE utilizado es:
+
 ```python
 class MyFSM:
 
@@ -170,6 +194,48 @@ class FloatDecision extends Decision:
 
 ```
 
+### TAREAS
+
+El pseudocódigo del algoritmo de TAREAS es:
+
+class Task:
+            # Return on success (true) or failure (false).
+            function run() -> bool
+
+class EnemyNear extends Task:
+	function run() -> bool:
+	# Task fails if there is no enemy nearby.
+	return distanceToEnemy < 10
+
+class PlayAnimation extends Task:
+	animationId: int
+	speed: float = 1.0
+	function run() -> bool:
+	if animationEngine.ready():
+		animationEngine.play(animationId, speed)
+		return true
+	else:
+		# Task failure, the animation could not be played.
+		return false
+
+class Selector extends Task:
+	children: Task[]
+
+	function run() -> bool:
+	for c in children:
+		if c.run():
+			return true
+	return false
+
+class Sequence extends Task:
+	children: Task[]
+	
+	function run() -> bool:
+	for c in children:
+		if not c.run():
+			return false
+	return true
+
 ### MERODEAR
 
 El pseudocódigo del algoritmo de MERODEAR es:
@@ -209,9 +275,9 @@ La función get Steering() toma como parámetro de output una variable de tipo K
 La velocidad del resultado se calcula con la máxima velocidad multiplicado por la orientación actual del character como un vector.
 Después se randomiza la rotación con un randomBinomial().
 
-Se utiliza un randomBinomial() para generar la rotación.Esta función devuelve valores comprendidos entre -1 y 1 dando prioridad a los valores más cercanos al 0. Esto significa que nuestro personaje tendrá más probabilidad de moverse en su misma dirección con una poca rotación. Con esta función binomial evitamos que el personaje gire bruscamente, aunque esto puede llegar a ser posible si se da la probabilidad.(Pag 76.AI for Games)
+Se utiliza un randomBinomial() para generar la rotación.Esta función devuelve valores comprendidos entre -1 y 1 dando prioridad a los valores más cercanos al 0. Esto significa que nuestro personaje tendrá más probabilidad de moverse en su misma dirección con una poca rotación. Con esta función binomial evitamos que el personaje gire bruscamente, aunque esto puede llegar a ser posible si se da la probabilidad.
 
-
+(Pag 76.AI for Games)
 
 ## Pruebas y métricas
 
@@ -225,16 +291,9 @@ En el video se pueden ver las siguientes pruebas:
 
 ## Ampliaciones
 
-Se han realizado las siguiente ampliaciones:
+Parte estética:
 
-- Movimiento manual del jugador con A* 
-- Merodeo del Minotauro con A*
-- Interfaz de botones que permite: </br>
-            - Reestablecer la escena </br>
-            - Activar y desactivar el smooth del camino </br>
-            - Cambiar la heurística </br>
-            - Ver el merodeo del minotauro </br>
-- El hilo no se dibuja si no hay salida y suena un sonido frustante
+
 
 ## Producción
 
