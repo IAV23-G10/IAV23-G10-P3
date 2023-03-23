@@ -199,41 +199,47 @@ class FloatDecision extends Decision:
 El pseudocódigo del algoritmo de TAREAS es:
 
 class Task:
-            # Return on success (true) or failure (false).
-            function run() -> bool
+
+    # Return on success (true) or failure (false).
+    function run() -> bool
 
 class EnemyNear extends Task:
-	function run() -> bool:
-	# Task fails if there is no enemy nearby.
+
+    function run() -> bool:
+    	# Task fails if there is no enemy nearby.
 	return distanceToEnemy < 10
 
 class PlayAnimation extends Task:
-	animationId: int
-	speed: float = 1.0
-	function run() -> bool:
+
+    animationId: int
+    speed: float = 1.0
+    
+    function run() -> bool:
 	if animationEngine.ready():
-		animationEngine.play(animationId, speed)
-		return true
+	      animationEngine.play(animationId, speed)
+	      return true
 	else:
-		# Task failure, the animation could not be played.
-		return false
+	      # Task failure, the animation could not be played.
+	      return false
 
 class Selector extends Task:
-	children: Task[]
 
-	function run() -> bool:
-	for c in children:
-		if c.run():
-			return true
-	return false
+     children: Task[]
+
+     function run() -> bool:
+         for c in children:
+	      if c.run():
+	          return true
+         return false
 
 class Sequence extends Task:
-	children: Task[]
+
+     children: Task[]
 	
-	function run() -> bool:
-	for c in children:
-		if not c.run():
-			return false
+     function run() -> bool:
+	 for c in children:
+	       if not c.run():
+		       return false
 	return true
 
 ### MERODEAR
