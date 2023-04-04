@@ -24,6 +24,6 @@ public class PianoCondition : Conditional
     public override TaskStatus OnUpdate()
     {
         // IMPLEMENTAR
-        return TaskStatus.Success;
+        return TaskStatus.Failure;
     }
 }

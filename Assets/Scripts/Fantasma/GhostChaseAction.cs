@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine.AI;
+using BehaviorDesigner.Runtime.Tasks.Unity.UnityGameObject;
+using System.Numerics;
 
 /*
  * Accion de seguir a la cantante, cuando la alcanza devuelve Success
@@ -20,16 +22,21 @@ using UnityEngine.AI;
 public class GhostChaseAction : Action
 {
     NavMeshAgent agent;
-    GameObject singer;
+     GameObject singer;
 
     public override void OnAwake()
     {
         // IMPLEMENTAR 
+        agent= GetComponent<NavMeshAgent>();
+        singer = GameObject.FindGameObjectWithTag("Cantante");
     }
 
     public override TaskStatus OnUpdate()
     {
+
         // IMPLEMENTAR
+        agent.SetDestination(singer.transform.position);
+
         return TaskStatus.Success;
     }
 }

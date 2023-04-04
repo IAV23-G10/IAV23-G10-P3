@@ -33,6 +33,6 @@ public class CantanteCondition : Conditional
         if (cantante.cantando)
             return TaskStatus.Success;
 
-        return TaskStatus.Failure;
+        return TaskStatus.Success;
     }
 }

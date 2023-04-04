@@ -30,6 +30,6 @@ public class GhostReturnAction : Action
     public override TaskStatus OnUpdate()
     {
         // IMPLEMENTAR
-        return TaskStatus.Success;
+        return TaskStatus.Failure;
     }
 }
