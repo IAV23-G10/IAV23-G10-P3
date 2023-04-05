@@ -39,11 +39,8 @@ public class GhostChaseAction : Action
 
     public override TaskStatus OnUpdate()
     {
-        // Comprobar si hay publico usando el blackboard
-
-
         // Si esta a distancia lo suficientemente cercana como para capturar a la cantante, o ya esta capturada
-        if (UnityEngine.Vector3.Distance(transform.position, singer.transform.position) < captureRange)
+        if (TargetReached(singer.transform.position, captureRange))
         {
             agent.isStopped = true;
 

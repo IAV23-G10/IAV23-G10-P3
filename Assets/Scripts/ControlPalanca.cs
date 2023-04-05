@@ -9,6 +9,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 /*
@@ -17,6 +18,11 @@ using UnityEngine;
 
 public class ControlPalanca : MonoBehaviour
 {
+    [SerializeField]
+    GameBlackboard.Side side;
+
+    GameBlackboard gameBlackboard;
+
     public GameObject candelabro;
     public GameObject publico;
     public float step;
@@ -27,6 +33,8 @@ public class ControlPalanca : MonoBehaviour
 
     private void Start()
     {
+        gameBlackboard = FindObjectOfType<GameBlackboard>();
+
         altura = candelabro.transform.position.y;
     }
 
@@ -40,6 +48,9 @@ public class ControlPalanca : MonoBehaviour
     public void Interact()
     {
         publico.GetComponent<Collider>().enabled = !caido && !otroControl.caido;
+
+        // Informar al GameBlackboard
+        gameBlackboard.ChangeLight(side, !caido);
 
         if (caido)
         {

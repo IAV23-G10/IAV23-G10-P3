@@ -87,10 +87,4 @@ public class GhostReturnJail : Action
 
         return TaskStatus.Running;
     }
-
-
-    public bool TargetReached(Vector3 targetPosition, float checkDistance)
-    {
-        return Vector3.Distance(transform.position, targetPosition) < checkDistance;
-    }
 }

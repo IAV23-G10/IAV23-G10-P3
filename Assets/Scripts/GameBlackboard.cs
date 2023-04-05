@@ -10,7 +10,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI; 
+using UnityEngine.AI;
 
 /*
  * Tiene una referencia a todas las variables del mundo necesarias para que otros objetos tengan acceso a estas
@@ -48,6 +48,10 @@ public class GameBlackboard : MonoBehaviour
     // Devuelve true cuando la cantante esta dentro de la celda
     public bool singerTrapped;
 
+    // Informacio acerca del publico que esta viendo ahora mismo
+    public bool leftLight = true;
+    public bool rightLight = true;
+
     void Awake()
     {
         imprisoned = false;
@@ -61,7 +65,7 @@ public class GameBlackboard : MonoBehaviour
     }
 
     // Permite al fantasma saber a qué palanca debería ir
-    public GameObject nearestLever(GameObject go) 
+    public GameObject nearestLever(GameObject go)
     {
         //return ((westLever.transform.position - go.transform.position).magnitude > (eastLever.transform.position - go.transform.position).magnitude) ? eastLever : westLever; 
 
@@ -70,7 +74,7 @@ public class GameBlackboard : MonoBehaviour
             //se nessuno dei due e caduto vai al piu vicino
             return ((westLever.transform.position - go.transform.position).magnitude > (eastLever.transform.position - go.transform.position).magnitude) ? eastLever : westLever;
         }
-        else if(!westLever.GetComponentInChildren<ControlPalanca>().caido && eastLever.GetComponentInChildren<ControlPalanca>().caido)
+        else if (!westLever.GetComponentInChildren<ControlPalanca>().caido && eastLever.GetComponentInChildren<ControlPalanca>().caido)
         {
             //e caduto quello di destra, vai a SX
             return westLever;
@@ -90,5 +94,44 @@ public class GameBlackboard : MonoBehaviour
         GameObject go = randomSitios[Random.Range(0, randomSitios.Length)];
         Debug.Log(go.name);
         return go;
+    }
+
+
+    // Cambiar informacion del publico
+    public enum Side { left, right }
+    // Repara o rompe una luz del lado especificado
+    public void ChangeLight(Side side, bool functional)
+    {
+        switch (side)
+        {
+            case Side.left:
+                leftLight = functional;
+                break;
+
+            case Side.right:
+                rightLight = functional;
+                break;
+        }
+    }
+
+    // Devuelve si una luz esta funcionando
+    public bool GetLight(Side side)
+    {
+        switch (side)
+        {
+            case Side.left:
+                return leftLight;
+
+            case Side.right:
+                return rightLight;
+
+            default: return false;
+        }
+    }
+
+    // Devuelve true si las dos luces estan activas
+    public bool FunctionalLights()
+    {
+        return leftLight && rightLight;
     }
 }

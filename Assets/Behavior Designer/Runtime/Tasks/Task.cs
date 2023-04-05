@@ -77,6 +77,12 @@ namespace BehaviorDesigner.Runtime.Tasks
         public virtual void OnControllerColliderHit(ControllerColliderHit hit) { }
         public virtual void OnAnimatorIK() { }
 
+
+        // Personal functions
+        public bool TargetReached(Vector3 targetPosition, float checkDistance)
+        { return Vector3.Distance(transform.position, targetPosition) < checkDistance; }
+
+
         // MonoBehaviour components:
         public GameObject GameObject { set { gameObject = value; } }
         protected GameObject gameObject;
