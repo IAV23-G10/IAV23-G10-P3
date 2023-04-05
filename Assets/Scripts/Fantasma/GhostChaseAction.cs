@@ -43,7 +43,7 @@ public class GhostChaseAction : Action
 
 
         // Si esta a distancia lo suficientemente cercana como para capturar a la cantante, o ya esta capturada
-        if (Vector3.Distance(transform.position, singer.transform.position) < captureRange)
+        if (UnityEngine.Vector3.Distance(transform.position, singer.transform.position) < captureRange)
         {
             agent.isStopped = true;
 
