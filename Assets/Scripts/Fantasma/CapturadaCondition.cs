@@ -28,6 +28,9 @@ public class CapturadaCondition : Conditional
     public override TaskStatus OnUpdate()
     {
         // IMPLEMENTAR
-        return TaskStatus.Failure;
+
+        // COMPRUEBA SI LA CANTANTE ESTA EN LA CARCEL
+
+        return TaskStatus.Success;
     }
 }

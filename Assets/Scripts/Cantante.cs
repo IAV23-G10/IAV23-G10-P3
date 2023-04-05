@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,6 +16,7 @@ public class Cantante : MonoBehaviour
     private double tiempoComienzoDescanso;
     // Si esta capturada
     public bool capturada = false;
+    public GameObject secuestrador = null;
 
     [Range(0, 180)]
     // Angulo de vision en horizontal
@@ -46,6 +48,10 @@ public class Cantante : MonoBehaviour
     //para seguir al fantasma o al vizconde
     public GameObject fantasma;
 
+
+
+    public GameObject GetSecuestrador() { return secuestrador; }
+
     public void Awake()
     {
         agente = GetComponent<NavMeshAgent>();
@@ -62,6 +68,19 @@ public class Cantante : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(agente.velocity.normalized);
         }
+    }
+
+    public void Secuestrada(GameObject _secuestrador)
+    {
+        capturada = true;
+        secuestrador = _secuestrador;
+        agente.enabled = false;
+    }
+
+    public void DeSecuestrada()
+    {
+        secuestrador = null;
+        agente.enabled = true;
     }
 
     // Comienza a cantar, reseteando el temporizador
@@ -113,7 +132,7 @@ public class Cantante : MonoBehaviour
     }
 
     // Genera una posicion aleatoria a cierta distancia dentro de las areas permitidas
-    private Vector3 RandomNavSphere(float distance) 
+    private Vector3 RandomNavSphere(float distance)
     {
         // IMPLEMENTAR
         return new Vector3();
@@ -124,10 +143,10 @@ public class Cantante : MonoBehaviour
     {
         // IMPLEMENTAR
     }
-    public bool GetCapturada()
+    public GameObject GetCapturada()
     {
         // IMPLEMENTAR
-        return true;
+        return secuestrador;
     }
 
     public void setCapturada(bool cap)

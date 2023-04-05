@@ -45,6 +45,9 @@ public class GameBlackboard : MonoBehaviour
     //public bool gate { get; set; }
     public bool gate = false; //gate close -> false
 
+    // Devuelve true cuando la cantante esta dentro de la celda
+    public bool singerTrapped;
+
     void Awake()
     {
         imprisoned = false;

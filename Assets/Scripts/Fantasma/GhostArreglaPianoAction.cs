@@ -32,6 +32,7 @@ public class GhostArreglaPianoAction : Action
             pianoControl.ArreglaPiano();
             return TaskStatus.Success;
         }
-        else return TaskStatus.Running;
+        //else return TaskStatus.Running;
+        else return TaskStatus.Failure;
     }
 }

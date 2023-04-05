@@ -21,8 +21,14 @@ using System.Numerics;
 
 public class GhostChaseAction : Action
 {
+    float captureRange = 3;
+
+    [SerializeField]
     NavMeshAgent agent;
-     GameObject singer;
+    [SerializeField]
+    GameObject singer;
+
+
 
     public override void OnAwake()
     {
@@ -33,10 +39,25 @@ public class GhostChaseAction : Action
 
     public override TaskStatus OnUpdate()
     {
+        // Comprobar si hay publico usando el blackboard
 
-        // IMPLEMENTAR
-        agent.SetDestination(singer.transform.position);
 
-        return TaskStatus.Success;
+        // Si esta a distancia lo suficientemente cercana como para capturar a la cantante, o ya esta capturada
+        if (Vector3.Distance(transform.position, singer.transform.position) < captureRange)
+        {
+            agent.isStopped = true;
+
+            Cantante singerScript = singer.GetComponent<Cantante>();
+            singerScript.Secuestrada(gameObject);
+
+            return TaskStatus.Success;
+        }
+        else
+        {
+            agent.isStopped = false;
+            agent.SetDestination(singer.transform.position);
+
+            return TaskStatus.Running;
+        }
     }
 }

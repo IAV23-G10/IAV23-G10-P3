@@ -12,6 +12,7 @@
 
         public override int CurrentChildIndex()
         {
+
             return currentChildIndex;
         }
 
