@@ -71,7 +71,7 @@ public class Barca : MonoBehaviour
         NavMeshAgent nv = sailor.GetComponent<NavMeshAgent>();
         if (nv)
         {
-            nv.enabled = false;
+           // nv.enabled = false;
         }            
         sailor.transform.SetParent(transform);
         sailor.transform.localPosition = new Vector3(0.0f, 0.15f, 0.0f);

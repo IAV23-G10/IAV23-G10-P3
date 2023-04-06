@@ -17,14 +17,16 @@ public class GhostBreakLights : Action
     public override void OnAwake()
     {
         // IMPLEMENTAR 
-        agent = GetComponent<NavMeshAgent>();
+       
     }
 
     public override void OnStart()
     {
+        agent = GetComponent<NavMeshAgent>();
         gameBlackboard = GameObject.FindObjectOfType<GameBlackboard>();
     }
 
+   
     public override TaskStatus OnUpdate()
     {
         // Tiene que romper una lampara para poder secuestrar a la cantante
