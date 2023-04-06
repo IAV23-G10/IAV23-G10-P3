@@ -23,11 +23,7 @@ public class GhostReturnJail : Action
     NavMeshAgent agent;
     [SerializeField]
     Cantante singer;
-    public override void OnStart()
-    {
-        agent = GetComponent<NavMeshAgent>();
-      
-    }
+
     public override void OnAwake()
     {
         // IMPLEMENTAR 

@@ -76,8 +76,8 @@ public class BarcaTriggers : MonoBehaviour
             if (!barcaAqui )
             {
                 barca.GetComponent<Barca>().swapDestiny(transform.position);
-                if(other.gameObject == ghost) { }
-                   // ghost.GetComponent<NavMeshAgent>().enabled = false;
+                if(other.gameObject == ghost)
+                    ghost.GetComponent<NavMeshAgent>().enabled = false;
             }//si te puedes subir a la barca
             else
             {
