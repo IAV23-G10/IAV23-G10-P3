@@ -36,6 +36,7 @@ public class GhostReturnJail : Action
 
 
         // Va a moverse
+        if(agent.enabled)
         agent.isStopped = false;
 
         // Comprobar si ya se ha encerrado a la cantante o no
@@ -44,7 +45,7 @@ public class GhostReturnJail : Action
             // Si ya se ha encerrado a la cantante
 
             // Cerrar la puerta si no lo esta ya
-            if (blackboard.gate)
+            if (blackboard.gate&&agent.enabled)
                 agent.SetDestination(jailLever.position);
             else
                 // Si la cantante esta dentro de la carcel, y la puerta esta cerrada
@@ -74,6 +75,7 @@ public class GhostReturnJail : Action
                 else
                 {
                     // Si todavia no se ha llegado al interior de la celda, ir
+                    if(agent.enabled)
                     agent.SetDestination(jail.position);
                 }
             }
@@ -81,6 +83,7 @@ public class GhostReturnJail : Action
             else
             {
                 // Si esta cerrado, abrirlo yendo a la palanca
+                if(agent.enabled)
                 agent.SetDestination(jailLever.position);
             }
         }

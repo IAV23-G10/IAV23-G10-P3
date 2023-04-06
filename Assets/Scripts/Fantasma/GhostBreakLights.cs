@@ -17,12 +17,13 @@ public class GhostBreakLights : Action
     public override void OnAwake()
     {
         // IMPLEMENTAR 
-        agent = GetComponent<NavMeshAgent>();
+       
     }
 
     public override void OnStart()
     {
         gameBlackboard = GameObject.FindObjectOfType<GameBlackboard>();
+        agent = GetComponent<NavMeshAgent>();
     }
 
     public override TaskStatus OnUpdate()
@@ -38,6 +39,7 @@ public class GhostBreakLights : Action
             // Si las dos luces estan encendidas, ir a apagar la que tenga mas cerca
 
             UnityEngine.Vector3 nearestLeverPosition = gameBlackboard.nearestLever(gameObject).transform.position;
+            if(agent.enabled)
             agent.SetDestination(nearestLeverPosition);
 
             return TaskStatus.Running;

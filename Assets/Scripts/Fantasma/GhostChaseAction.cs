@@ -33,15 +33,19 @@ public class GhostChaseAction : Action
     public override void OnAwake()
     {
         // IMPLEMENTAR 
-        agent= GetComponent<NavMeshAgent>();
+     
         singer = GameObject.FindGameObjectWithTag("Cantante");
     }
-
+    public override void OnStart()
+    {
+        agent = GetComponent<NavMeshAgent>();
+    }
     public override TaskStatus OnUpdate()
     {
         // Si esta a distancia lo suficientemente cercana como para capturar a la cantante, o ya esta capturada
         if (TargetReached(singer.transform.position, captureRange))
         {
+            if(agent.enabled)
             agent.isStopped = true;
 
             Cantante singerScript = singer.GetComponent<Cantante>();
@@ -51,7 +55,9 @@ public class GhostChaseAction : Action
         }
         else
         {
-            agent.isStopped = false;
+            if (agent.enabled)
+                agent.isStopped = false;
+            if(agent.enabled)
             agent.SetDestination(singer.transform.position);
 
             return TaskStatus.Running;
