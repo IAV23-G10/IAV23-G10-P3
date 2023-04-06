@@ -129,9 +129,9 @@ public class GameBlackboard : MonoBehaviour
         }
     }
 
-    // Devuelve true si las dos luces estan activas
+    // Devuelve true si sigue habiendo una activa
     public bool FunctionalLights()
     {
-        return leftLight && rightLight;
+        return leftLight || rightLight;
     }
 }
