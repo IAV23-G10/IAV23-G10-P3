@@ -47,6 +47,8 @@ public class GhostBreakLights : Action
         else
         {
             // Si una o las dos luces estan rotas, mision cumplida
+            int a = agent.areaMask, b = 1 << NavMesh.GetAreaFromName("Escenario");
+            agent.areaMask = (a | b) & (~a | ~b);
             return TaskStatus.Success;
         }
     }
