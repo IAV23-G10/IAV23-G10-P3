@@ -20,16 +20,33 @@ using UnityEngine.AI;
 public class GhostReturnAction : Action
 {
     NavMeshAgent agent;
-    GameObject musicRoom;
-
+    public GameObject musicRoom;
+    float captureRange = 3;
     public override void OnAwake()
     {
         // IMPLEMENTAR
+    
+        agent = GetComponent<NavMeshAgent>(); 
     }
 
     public override TaskStatus OnUpdate()
     {
-        // IMPLEMENTAR
-        return TaskStatus.Failure;
+        if (TargetReached(musicRoom.transform.position, captureRange))
+        {
+            if (agent.enabled)
+                agent.isStopped = true;
+         
+            
+            return TaskStatus.Success;
+        }
+        else
+        {
+            if (agent.enabled)
+                agent.isStopped = false;
+            if (agent.enabled)
+                agent.SetDestination(musicRoom.transform.position);
+
+            return TaskStatus.Running;
+        }
     }
 }
