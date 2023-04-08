@@ -99,9 +99,9 @@ public class Player : MonoBehaviour
         }
         anim.SetFloat("Speed", GetComponent<NavMeshAgent>().velocity.magnitude);
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            cantantePruebas.GetComponent<Cantante>().setCapturada(true);
+            cantantePruebas.GetComponent<Cantante>().Secuestrada(gameObject);
         }
     }
 }

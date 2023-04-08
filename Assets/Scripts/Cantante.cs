@@ -93,8 +93,11 @@ public class Cantante : MonoBehaviour
     // Comprueba si tiene que dejar de cantar
     public bool TerminaCantar()
     {
-        // IMPLEMENTAR
-        return true;
+        tiempoComienzoCanto += Time.deltaTime;
+
+        if (tiempoComienzoCanto >= tiempoDeCanto) return true;
+
+        return false;
     }
 
     // Comienza a descansar, reseteando el temporizador
