@@ -18,15 +18,16 @@ public class PianoCondition : Conditional
 
     public override void OnAwake()
     {
-        // IMPLEMENTAR
+        piano = GameObject.FindGameObjectWithTag("Piano").GetComponent<ControlPiano>();
     }
 
     public override TaskStatus OnUpdate()
     {
-        // IMPLEMENTAR
-
-        // COMPROBAR SI EL PIANO ESTA ROTO ACTUALMENTE
-
-        return TaskStatus.Success;
+        if (piano.roto)
+        {
+            return TaskStatus.Success;
+        }
+        //else return TaskStatus.Running;
+        else return TaskStatus.Failure;
     }
 }
