@@ -7727,9 +7727,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
     _json: '{"declarations":{"Kind":"Scene","collection":{"$content":[{"name":"escenario","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.Transform,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"bambalina","value":{"$content":1,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.Transform,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 908012310}
+    - {fileID: 553852559}
 --- !u!4 &759450756
 Transform:
   m_ObjectHideFlags: 0
@@ -18847,7 +18849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cda1dafb473ee2d47acfd3301f82447c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoDeCanto: 5
+  tiempoDeCanto: 10
   tiempoDeDescanso: 15
   capturada: 0
   secuestrador: {fileID: 0}

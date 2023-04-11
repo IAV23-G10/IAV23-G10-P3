@@ -95,8 +95,8 @@ public class Cantante : MonoBehaviour
     {
         tiempoComienzoCanto += Time.deltaTime;
 
-        if (tiempoComienzoCanto >= tiempoDeCanto) return true;
-
+        if (tiempoComienzoCanto >= tiempoDeCanto) { tiempoComienzoCanto = 0; return true; }
+     
         return false;
     }
 
@@ -109,8 +109,11 @@ public class Cantante : MonoBehaviour
     // Comprueba si tiene que dejar de descansar
     public bool TerminaDescansar()
     {
-        // IMPLEMENTAR
-        return true;
+        tiempoComienzoDescanso += Time.deltaTime;
+
+        if (tiempoComienzoDescanso >= tiempoDeDescanso) { tiempoComienzoDescanso = 0; return true; }
+
+        return false;
     }
 
     // Comprueba si se encuentra en la celda
