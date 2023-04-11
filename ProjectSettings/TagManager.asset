@@ -10,6 +10,7 @@ TagManager:
   - Palanca
   - Puerta
   - Cantante
+  - celda
   layers:
   - Default
   - TransparentFX

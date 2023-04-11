@@ -41,20 +41,29 @@ public class Cantante : MonoBehaviour
     // Objetivos de su itinerario
     public Transform Escenario;
     public Transform Bambalinas;
-
+    public Transform Celda;
     // La blackboard
     public GameBlackboard bb;
 
     //para seguir al fantasma o al vizconde
     public GameObject fantasma;
+    bool encelda = false;
 
 
 
-    public GameObject GetSecuestrador() { return secuestrador; }
 
     public void Awake()
     {
         agente = GetComponent<NavMeshAgent>();
+        
+        
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "celda")
+        {
+            encelda = true;
+        }
     }
 
     public void Start()
@@ -69,7 +78,10 @@ public class Cantante : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(agente.velocity.normalized);
         }
     }
-
+    public bool hola()
+    {
+        return true;
+    }
     public void Secuestrada(GameObject _secuestrador)
     {
         capturada = true;
@@ -120,7 +132,7 @@ public class Cantante : MonoBehaviour
     public bool EstaEnCelda()
     {
         // IMPLEMENTAR
-        return true;
+        return encelda;
     }
 
     // Comprueba si esta en un sitio desde el cual sabe llegar al escenario
@@ -149,15 +161,15 @@ public class Cantante : MonoBehaviour
     {
         // IMPLEMENTAR
     }
-    public GameObject GetCapturada()
+    public bool GetCapturada()
     {
         // IMPLEMENTAR
-        return secuestrador;
+        return capturada;
     }
-
+    
     public void setCapturada(bool cap)
     {
-        // IMPLEMENTAR
+        capturada = cap;
     }
 
     public GameObject sigueFantasma()

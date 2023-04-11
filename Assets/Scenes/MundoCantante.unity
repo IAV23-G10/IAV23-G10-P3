@@ -6466,7 +6466,7 @@ GameObject:
   - component: {fileID: 626511423}
   m_Layer: 9
   m_Name: Celda (C)
-  m_TagString: Untagged
+  m_TagString: celda
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 11
   m_StaticEditorFlags: 8
@@ -7728,10 +7728,14 @@ MonoBehaviour:
   _data:
     _json: '{"declarations":{"Kind":"Scene","collection":{"$content":[{"name":"escenario","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.Transform,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"bambalina","value":{"$content":1,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.Transform,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"celda","value":{"$content":2,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.Transform,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"fantasma","value":{"$content":3,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.Transform,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 908012310}
     - {fileID: 553852559}
+    - {fileID: 626511422}
+    - {fileID: 2536986899609911509}
 --- !u!4 &759450756
 Transform:
   m_ObjectHideFlags: 0
@@ -18862,6 +18866,7 @@ MonoBehaviour:
   cantando: 0
   Escenario: {fileID: 908012310}
   Bambalinas: {fileID: 553852559}
+  Celda: {fileID: 0}
   bb: {fileID: 2002151600}
   fantasma: {fileID: 2536986899609911519}
 --- !u!114 &2536986899609911508
