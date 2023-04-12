@@ -42,15 +42,10 @@ public class Cantante : MonoBehaviour
     public Transform Escenario;
     public Transform Bambalinas;
     public Transform Celda;
+    public Transform Vizconde;
     // La blackboard
     public GameBlackboard bb;
-
-    //para seguir al fantasma o al vizconde
-    public GameObject fantasma;
     bool encelda = false;
-
-
-
 
     public void Awake()
     {
@@ -78,10 +73,7 @@ public class Cantante : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(agente.velocity.normalized);
         }
     }
-    public bool hola()
-    {
-        return true;
-    }
+
     public void Secuestrada(GameObject _secuestrador)
     {
         capturada = true;
@@ -92,6 +84,7 @@ public class Cantante : MonoBehaviour
     public void DeSecuestrada()
     {
         secuestrador = null;
+        capturada= false;
         agente.enabled = true;
     }
 
@@ -138,35 +131,68 @@ public class Cantante : MonoBehaviour
     // Comprueba si esta en un sitio desde el cual sabe llegar al escenario
     public bool ConozcoEsteSitio()
     {
-        // IMPLEMENTAR
-        return true;
+        if (transform.position.y >= -0.3)
+        {
+            return true;
+        }
+        return false;
     }
 
     //Mira si ve al vizconde con un angulo de vision y una distancia maxima
     public bool Scan()
     {
-        // IMPLEMENTAR
-        return true;
+
+        double angulo = Vector3.Angle(transform.forward, Vizconde.position - transform.position);
+        double distancia = Vector3.Magnitude(transform.position - Vizconde.position);
+
+        if (angulo < anguloVistaHorizontal &&  distancia<= distanciaVista)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, Vizconde.position - transform.position, out hit, Mathf.Infinity) && 
+                hit.collider.gameObject.GetComponent<Player>())
+            {
+                if (agente.enabled)
+                    agente.SetDestination(Vizconde.position);
+                return true;
+            };
+        }
+        return false;
     }
 
     // Genera una posicion aleatoria a cierta distancia dentro de las areas permitidas
     private Vector3 RandomNavSphere(float distance)
     {
-        // IMPLEMENTAR
-        return new Vector3();
+        NavMeshHit hit;
+        NavMesh.SamplePosition(transform.position + Random.insideUnitSphere * distanciaDeMerodeo, out hit, 
+            distanciaDeMerodeo, NavMesh.AllAreas);
+        return hit.position;
     }
 
     // Genera un nuevo punto de merodeo cada vez que agota su tiempo de merodeo actual
     public void IntentaMerodear()
     {
         // IMPLEMENTAR
+        tiempoComienzoMerodeo += Time.deltaTime;
+
+        if (tiempoComienzoMerodeo >= tiempoDeMerodeo)
+        {
+            tiempoComienzoMerodeo = 0;
+            if (agente.enabled)
+                agente.SetDestination(RandomNavSphere(distanciaDeMerodeo));
+        }
     }
+
     public bool GetCapturada()
     {
         // IMPLEMENTAR
         return capturada;
     }
     
+    public GameObject getSecuestrador()
+    {
+        return secuestrador;
+    }
+
     public void setCapturada(bool cap)
     {
         capturada = cap;

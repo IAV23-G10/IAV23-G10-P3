@@ -18860,13 +18860,14 @@ MonoBehaviour:
   anguloVistaHorizontal: 90
   distanciaVista: 7
   objetivo: {fileID: 944435481}
-  tiempoDeMerodeo: 1
+  tiempoDeMerodeo: 2
   tiempoComienzoMerodeo: 0
   distanciaDeMerodeo: 16
   cantando: 0
   Escenario: {fileID: 908012310}
   Bambalinas: {fileID: 553852559}
-  Celda: {fileID: 0}
+  Celda: {fileID: 626511422}
+  Vizconde: {fileID: 944435481}
   bb: {fileID: 2002151600}
   fantasma: {fileID: 2536986899609911519}
 --- !u!114 &2536986899609911508

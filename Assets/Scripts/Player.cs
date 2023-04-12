@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     private float ultimaAccion = 0;
     private Animator anim;
     private Rigidbody rb;
+    private Cantante cantante;
 
     public GameObject cantantePruebas;
     void Start()
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
         tiempoAtaqueActivo = tiempoEsperaAtaque / 2;
         anim = gameObject.GetComponentInChildren<Animator>();
         rb = gameObject.GetComponent<Rigidbody>();
+        cantante = cantantePruebas.GetComponent<Cantante>();
     }
 
     void Update()
@@ -101,7 +103,12 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            cantantePruebas.GetComponent<Cantante>().Secuestrada(gameObject);
+            if (cantante.GetCapturada())
+            {
+                cantante.DeSecuestrada();
+            }
+
+            else cantante.Secuestrada(gameObject);
         }
     }
 }
