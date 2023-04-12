@@ -134,4 +134,9 @@ public class GameBlackboard : MonoBehaviour
     {
         return leftLight || rightLight;
     }
+
+    public bool pianoRoto()
+    {
+        return piano.GetComponent<ControlPiano>().roto;
+    }
 }

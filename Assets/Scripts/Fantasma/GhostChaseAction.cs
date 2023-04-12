@@ -27,21 +27,27 @@ public class GhostChaseAction : Action
     NavMeshAgent agent;
     [SerializeField]
     GameObject singer;
-
-
+    [SerializeField]
+    GameBlackboard gameBlackboard;
 
     public override void OnAwake()
     {
-        // IMPLEMENTAR 
-     
         singer = GameObject.FindGameObjectWithTag("Cantante");
     }
     public override void OnStart()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.isStopped = false;
     }
+
     public override TaskStatus OnUpdate()
     {
+        //Si el piano esta roto vamos a por el
+        if (gameBlackboard.pianoRoto())
+        {
+            return TaskStatus.Failure;
+        }
+
         // Si esta a distancia lo suficientemente cercana como para capturar a la cantante, o ya esta capturada
         if (TargetReached(singer.transform.position, captureRange))
         {

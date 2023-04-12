@@ -43,8 +43,6 @@ public class ControlPiano : MonoBehaviour
         }
     }
 
-
-
     public void InteractFantasma()
     {
         tocado = true;

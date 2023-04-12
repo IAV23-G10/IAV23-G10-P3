@@ -184,7 +184,6 @@ public class Cantante : MonoBehaviour
 
     public bool GetCapturada()
     {
-        // IMPLEMENTAR
         return capturada;
     }
     

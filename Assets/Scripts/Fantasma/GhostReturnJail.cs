@@ -10,7 +10,7 @@ using UnityEngine.AI;
 public class GhostReturnJail : Action
 {
     [SerializeField]
-    GameBlackboard blackboard;
+    GameBlackboard gameBlackboard;
 
     float destinationRange = 3;
 
@@ -26,13 +26,22 @@ public class GhostReturnJail : Action
 
     public override void OnAwake()
     {
-        // IMPLEMENTAR 
+        agent.isStopped = false;
     }
 
     public override TaskStatus OnUpdate()
     {
+
+        //Si el piano esta roto vamos a por el
+        if (gameBlackboard.pianoRoto())
+        {
+            // Dejar de ser su secuestrador
+            singer.DeSecuestrada();
+            return TaskStatus.Failure;
+        }
+
         Debug.Log("singer.secuestrador = " + singer.secuestrador);
-        Debug.Log("blackboard.gate = " + blackboard.gate);
+        Debug.Log("blackboard.gate = " + gameBlackboard.gate);
 
 
         // Va a moverse
@@ -40,12 +49,12 @@ public class GhostReturnJail : Action
         agent.isStopped = false;
 
         // Comprobar si ya se ha encerrado a la cantante o no
-        if (blackboard.singerTrapped)
+        if (gameBlackboard.singerTrapped)
         {
             // Si ya se ha encerrado a la cantante
 
             // Cerrar la puerta si no lo esta ya
-            if (blackboard.gate&&agent.enabled)
+            if (gameBlackboard.gate&&agent.enabled)
                 agent.SetDestination(jailLever.position);
             else
                 // Si la cantante esta dentro de la carcel, y la puerta esta cerrada
@@ -57,7 +66,7 @@ public class GhostReturnJail : Action
             // Si la cantante no esta dentro de la carcel todavia, tiene que llevarla alli
 
             // Comprobar si la carcel esta abierta o cerrada
-            if (blackboard.gate)
+            if (gameBlackboard.gate)
             {
                 // Si esta abierto, ir al interior de la celda
 
@@ -69,7 +78,7 @@ public class GhostReturnJail : Action
                     // Dejar de ser su secuestrador
                     singer.DeSecuestrada();
                     // Notificar al juego de que la cantante esta encerrada en la carcel
-                    blackboard.singerTrapped = true;
+                    gameBlackboard.singerTrapped = true;
                 }
 
                 else

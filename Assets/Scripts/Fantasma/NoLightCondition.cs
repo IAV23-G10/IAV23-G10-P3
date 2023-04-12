@@ -23,11 +23,11 @@ public class NoLightCondition : Conditional
         bool leftLightFunctional = gameBlackboard.GetLight(GameBlackboard.Side.left);
         bool rightLightFunctional = gameBlackboard.GetLight(GameBlackboard.Side.right);
 
-        // Si las dos luces funcionan, no puede secuestrar a la cantante
-        if (leftLightFunctional && rightLightFunctional)
+        // Si una de las dos luces funciona, no puede secuestrar a la cantante
+        if (leftLightFunctional || rightLightFunctional)
             return TaskStatus.Failure;
 
-        // Si una de los dos luces o las dos estan rotas, entonces si puede secuestrar a la cantante
+        // Si las dos estan rotas, entonces si puede secuestrar a la cantante
         else
             return TaskStatus.Success;
     }

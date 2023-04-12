@@ -24,16 +24,20 @@ public class GhostBreakLights : Action
     {
         gameBlackboard = GameObject.FindObjectOfType<GameBlackboard>();
         agent = GetComponent<NavMeshAgent>();
+        agent.isStopped = false;
     }
 
     public override TaskStatus OnUpdate()
     {
+        //Si el piano esta roto vamos a por el
+        if (gameBlackboard.pianoRoto())
+        {
+            return TaskStatus.Failure;
+        }
+
         // Tiene que romper una lampara para poder secuestrar a la cantante
 
         // Comprobar si se ha llegado al interruptor
-
-
-        // 
         if (gameBlackboard.FunctionalLights())
         {
             // Si las dos luces estan encendidas, ir a apagar la que tenga mas cerca
