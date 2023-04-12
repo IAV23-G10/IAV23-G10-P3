@@ -18742,7 +18742,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373871681117018864}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.4
   m_Speed: 5
@@ -18789,7 +18789,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373871681117018864}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.77, y: -4.46, z: 57.56}
+  m_LocalPosition: {x: -1.76, y: 1.07, z: 3.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18909,8 +18909,8 @@ MonoBehaviour:
         Condition","Instant":true}]},{"Type":"NoLightCondition","NodeData":{"Offset":"(-229.699173,164.892273)"},"ID":17,"Name":"No
         Light Condition","Instant":true},{"Type":"GhostChaseAction","NodeData":{"Offset":"(-32.0210953,165.517273)"},"ID":18,"Name":"Ghost
         Chase Action","Instant":true,"NavMeshAgentagent":2,"GameObjectsinger":3,"GameBlackboardgameBlackboard":4},{"Type":"GhostReturnJail","NodeData":{"Offset":"(157.978775,165.517273)"},"ID":19,"Name":"Ghost
-        Return Jail","Instant":true,"GameBlackboardgameBlackboard":5,"Transformjail":6,"TransformjailLever":7,"NavMeshAgentagent":8,"Cantantesinger":9},{"Type":"GhostReturnAction","NodeData":{"Offset":"(336.1904,179.741364)"},"ID":20,"Name":"Ghost
-        Return Action","Instant":true,"GameObjectmusicRoom":10},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(499.7234,151.930634)"},"ID":21,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":5000},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]},{"Type":"GhostBreakLights","NodeData":{"Offset":"(247.037018,178.518509)"},"ID":22,"Name":"Ghost
+        Return Jail","Instant":true,"GameBlackboardgameBlackboard":5,"Transformjail":6,"TransformjailLever":7,"NavMeshAgentagent":8,"Cantantesinger":9},{"Type":"GhostWaitsInMusicRoom","NodeData":{"Offset":"(331.907654,178.237213)"},"ID":20,"Name":"Ghost
+        Waits In Music Room","Instant":true,"GameObjectmusicRoom":10},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(499.7234,151.930634)"},"ID":21,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":2},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]},{"Type":"GhostBreakLights","NodeData":{"Offset":"(247.037018,178.518509)"},"ID":22,"Name":"Ghost
         Break Lights","Instant":true}]}]},"DetachedTasks":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(919.999634,1070.76892)"},"ID":23,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"CantanteCondition","NodeData":{"Offset":"(-496.368164,145.657837)"},"ID":24,"Name":"Cantante
         Condition","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-281.119171,148.953583)"},"ID":25,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-118.571465,150.036423)"},"ID":26,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"PublicoCondition","NodeData":{"Offset":"(-200,138.845078)"},"ID":27,"Name":"Publico
         Condition","Instant":true,"BooleanpublicoWest":false,"BooleanpublicoEast":false}]},{"Type":"GhostChaseAction","NodeData":{"Offset":"(86.74121,142.828751)"},"ID":28,"Name":"Ghost
@@ -18959,7 +18959,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2536986899609911519}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.57, y: -4.95, z: 55.54}
+  m_LocalPosition: {x: 33.4, y: -4.95, z: 58.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18991,7 +18991,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 6
+  m_Speed: 9
   m_Acceleration: 600
   avoidancePriority: 50
   m_AngularSpeed: 1200

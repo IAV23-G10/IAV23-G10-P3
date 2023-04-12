@@ -78,7 +78,7 @@ public class Cantante : MonoBehaviour
 
         // Si estaba secuestrada por el fantasma, y el player se acerca, ser libre y confundir al fantasma
 
-        if (secuestrador.gameObject.tag == "Ghost" 
+        if (secuestrador != null && secuestrador.gameObject.tag == "Ghost" 
             && Vector3.Distance(transform.position, player.transform.position) < 2)
         {
             bb.isGhostConfused = true;
@@ -137,6 +137,7 @@ public class Cantante : MonoBehaviour
     // Comienza a descansar, reseteando el temporizador
     public void Descansar()
     {
+        cantando = false;
         // IMPLEMENTAR
     }
 

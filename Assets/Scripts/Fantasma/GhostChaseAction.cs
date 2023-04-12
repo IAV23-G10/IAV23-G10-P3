@@ -42,6 +42,10 @@ public class GhostChaseAction : Action
 
     public override TaskStatus OnUpdate()
     {
+        int a = agent.areaMask, b = 1 << NavMesh.GetAreaFromName("Escenario");
+        agent.areaMask = (a | b);
+
+
         //Si el piano esta roto vamos a por el
         if (gameBlackboard.pianoRoto())
         {

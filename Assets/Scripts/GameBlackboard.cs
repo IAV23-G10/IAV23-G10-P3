@@ -64,6 +64,11 @@ public class GameBlackboard : MonoBehaviour
     private void Update()
     {
         imprisoned = !singer.GetComponent<AudioSource>().isPlaying;
+
+
+        // Si la cantante sale de la carcel, actualizar la variable
+        if (Vector3.Distance(singer.transform.position, celda.transform.position) > 5)
+            singerTrapped = false;
     }
 
     // Permite al fantasma saber a qué palanca debería ir

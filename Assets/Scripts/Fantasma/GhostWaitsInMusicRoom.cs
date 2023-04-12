@@ -17,7 +17,7 @@ using UnityEngine.AI;
  * Accion de ir a la sala de musica, cuando llega devuelve Success
  */
 
-public class GhostReturnAction : Action
+public class GhostWaitsInMusicRoom : Action
 {
     NavMeshAgent agent;
     public GameObject musicRoom;
@@ -42,7 +42,16 @@ public class GhostReturnAction : Action
         {
             agent.SetDestination(musicRoom.transform.position);
 
-            return TaskStatus.Success;
+            //if (agent.enabled)
+            //    agent.isStopped = true;
+
+            Debug.Log("TARGET REACHED");
+
+            // Solo dejara de estar enganchado al piano si oye a la cantante
+            if (cantante.cantando)
+                return TaskStatus.Success;
+            else
+                return TaskStatus.Running;
         }
         else
         {
