@@ -52,6 +52,8 @@ public class GameBlackboard : MonoBehaviour
     public bool leftLight = true;
     public bool rightLight = true;
 
+    public bool isGhostConfused = false;
+
     void Awake()
     {
         imprisoned = false;

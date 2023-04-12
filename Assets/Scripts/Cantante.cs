@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using BehaviorDesigner.Runtime;
+using BehaviorDesigner.Runtime.Tasks.Unity.UnityGameObject;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -47,11 +49,16 @@ public class Cantante : MonoBehaviour
     public GameBlackboard bb;
     bool encelda = false;
 
+    Player player;
+    BehaviorTree ghostTree;
+
     public void Awake()
     {
         agente = GetComponent<NavMeshAgent>();
-        
-        
+
+        player = FindObjectOfType<Player>();
+
+        ghostTree = GameObject.FindWithTag("Ghost").GetComponent<BehaviorTree>();
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -65,6 +72,27 @@ public class Cantante : MonoBehaviour
     {
         agente.updateRotation = false;
     }
+
+    private void Update()
+    {
+
+        // Si estaba secuestrada por el fantasma, y el player se acerca, ser libre y confundir al fantasma
+
+        if (secuestrador.gameObject.tag == "Ghost" 
+            && Vector3.Distance(transform.position, player.transform.position) < 2)
+        {
+            bb.isGhostConfused = true;
+            DeSecuestrada();
+
+            ghostTree.enabled = false;
+
+            // Resetear el fantasma
+            Invoke("ResetGhost", .1f);
+        }
+    }
+    // Resetear el arbol del fantasma, para que deje de hacer su tarea actual y se confunda
+    void ResetGhost()
+    { ghostTree.enabled = true; }
 
     public void LateUpdate()
     {
@@ -87,6 +115,7 @@ public class Cantante : MonoBehaviour
         capturada= false;
         agente.enabled = true;
     }
+
 
     // Comienza a cantar, reseteando el temporizador
     public void Cantar()
