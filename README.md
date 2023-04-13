@@ -131,15 +131,7 @@ Para el manejo de los comportamientos del **fantasma** haremos uso de la herrami
 </table>
 
  ## ÁRBOL DE COMPORTAMIENTO FANTASMA
-<table>
-  <tr>
-    <th>BOCETO INICIAL</th>
-    <th>RESULTADO FINAL</th>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/IAV23-G10/IAV23-G10-P3/blob/main/Assets/ImagesForReadme/ArbolComportamiento.png"/></td>
-    <td><img src="https://github.com/IAV23-G10/IAV23-G10-P3/blob/main/Assets/ImagesForReadme/Fantasma_MaquinaEstados.png"/></td>
-  </tr>
+
 
 ## Pruebas y métricas
 
