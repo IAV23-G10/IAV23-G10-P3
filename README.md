@@ -101,6 +101,7 @@ En la escena de apertura se puede observar un mapa que muestra todas las habitac
 Lo que vamos a realizar para resolver esta práctica es implementar el comportamiento de los diferentes Scripts:
 
 **PLANTEAMINETO INICIAL**: </br>
+
 - **SiguePersonaje:** Usaremos este comportamiento para mover tanto a la cantante como al fantasma, ya sea para que persigan otro personaje o una posicion concreta del mapa (Ej: El fantasma va a una palanca / La cantante va a las bambalinas)
 
 Para el manejo de los comportamientos de la **cantante** usaremos una maquina de estados programada en c# haciendo uso de enumeradores para los nombres de los estados
