@@ -3,12 +3,12 @@
 # IAV - Base para la Práctica 3
 
 
-## Autores
+## AUTORES
 - [Miriam Martin Sanchez](https://github.com/miriam-m-s)
 - [Diego Rol Sanchez](https://github.com/DiegoRol69)
 - [Ignacio del Castillo](https://github.com/NachoDelCastillo)
 
-## Propuesta
+## PROPUESTA
 
 La práctica consiste en desarrollar un prototipo de IA para Videojuegos, dentro de un entorno virtual que represente la ópera de París, con un agente inteligente (el fantasma) que decide, se mueve y actúa según lo que encuentra en sus diferentes estancias, otros agentes más simples como la cantante y el público, y un avatar, el vizconde -némesis del fantasma-, controlado por el jugador.  </br>
 
@@ -18,7 +18,7 @@ El punto de partida propuesto para esta práctica, con la documentación e imple
 
 [Enunciado oficial](https://narratech.com/es/inteligencia-artificial-para-videojuegos/decision/historias-de-fantasmas/)
 
-### Estancias del entorno y su comportamiento</br>
+### ESTANCIAS DEL ENTORNO Y COMPORTAMMIENTO</br>
 
 Patio de butacas (P). Es la estancia inicial del público,  dividido en dos bloques (este y oeste). Cada bloque chilla a la mínima que vea al fantasma sobre el escenario, pero permanecerá en su sitio salvo que caiga la lámpara gigante del techo correspondiente (hay lámpara este y oeste), en cuyo caso ese lado del patio de butacas se oscurecerá y los espectadores huirán despavoridos al vestíbulo. No regresarán hasta que no se vuelva a colocar su lámpara. Esta estancia está conectada con el escenario (visibilidad y navegabilidad, como indica la arista negra), con el vestíbulo, y es visible desde los palcos este y oeste, aunque el público no puede alcanzar a ver bien si hay alguien en los palcos, ni aunque estén las dos lámparas encendidas.</br>
 
@@ -42,7 +42,7 @@ Sótano norte (Sn). Estancia que conecta con la celda, además de con la sala de
 
 Sala de música (M). Estancia inicial del fantasma, donde le gusta pasar tiempo componiendo su ópera. Conecta mediante una barca con el sótano este, y con otra con el sótano norte. El fantasma tiene el objetivo principal de secuestrar a la cantante, para lo que intentará buscarla en las bambalinas, en el escenario o si no logra dar con ella, explorando las demás estancias meticulosamente por si estuviera “perdida” por allí. No puede acceder al escenario si hay público mirando, de modo que, como objetivo secundario, necesita tirar las dos lámparas del techo para vaciar del todo el patio de butacas. Sea como sea, una vez atrapada la cantante, la llevará consigo hasta la celda, intentando usar siempre el camino con menor coste (recordando la última posición de las barcas y del vizconde que conoce, y eligiendo la ruta con menor coste, la que tenga más barcas a su favor y que evite al héroe de esta historia). Cuando llega hasta la celda la soltará allí, activará las rejas e irá hasta la sala de música, permaneciendo allí indefinidamente. Lo único que desconcentra al fantasma cuando está componiendo es escuchar a su musa cantar de nuevo en el escenario, reavivando sus deseos de secuestrarla y encerrarla otra vez en su celda. Por otro lado, si el fantasma llega a percibir el ruido de los golpes del vizconde a su piano, abortará la misión que esté haciendo (soltando a la cantante) y correrá enfurecido hasta allí para dedicar unos segundos a arreglar semejante estropicio.</br>
 
-### Las características principales del prototipo son:</br>
+### CARACTERÍSTICAS PRINCIPALES DEL PROTOTIPO</br>
 
 **A.** Hay un mundo virtual (la casa de la ópera), con un esquema de división de malla de navegación proporcionado por Unity, donde se ubican todos los elementos descritos anteriormente. El vizconde es controlado por el jugador mediante el ratón y un único clic derecho para interactuar con otros elementos. Hay cámaras que siguen a cada uno de los personajes, incluyendo una que nos dé la vista general del entorno.
 
@@ -54,7 +54,7 @@ Sala de música (M). Estancia inicial del fantasma, donde le gusta pasar tiempo 
 
 **E.** El fantasma también cuenta con un sistema de gestión sensorial para reaccionar a lo que realmente ve (en la propia estancia o en otras que son visibles para él) y oye (el canto de su musa, el grito del público, el ruido de la sala de música…), sin tener que recurrir a información privilegiada sino únicamente recordando lo que ha ido viendo por el mundo.
 
-## Punto de partida
+## PUNTO DE PARTIDA
 Se parte de un proyecto base de Unity proporcionado por el profesor aquí:
 (https://github.com/Narratech/IAV-Decision)
 
@@ -63,7 +63,7 @@ Se siguen usando el ComportamientoAgente y Agente ya mencionados en la [PRÁCTIC
 En la escena de apertura se puede observar un mapa que muestra todas las habitaciones previamente mencionadas junto con sus respectivos pasillos. También se pueden ver modelos de los espectadores, el vizconde, el fantasma y la cantante, así como objetos interactivos como el piano, las palancas y las barcas. En cuanto a los scripts, hay varias clases, entre ellas:</br>
 - **Game Blackboard** : contiene las referencias a las habitaciones del mapa así como a todas las variables del mundo. También permite hacer saber al fantasma la palanca que tiene que tocar y la elección de la habitación en la que tiene que buscar a la cantante. 
 
-- **Player** : permite controlar las acciones del vizconde.</br>
+- **Player** : permite controlar las acciones del vizconde, tanto moverlo como interactuar con el resto de elementos.</br>
 
 - **CameraManager**: permite controlar el cambio de cámara para visualizar distintas estancias del mapa.</br>
 
@@ -93,11 +93,11 @@ En la escena de apertura se puede observar un mapa que muestra todas las habitac
 
 - **ImprisonedCondition** : permite al fantasma saber si la cantante está en la celda.</br>
 
-- **CantanteFSM** : toma de decisiones de la cantante a través de la máquina de estados.</br>
+- **Cantante** : toma de decisiones de la cantante a través de la máquina de estados, entre ellas cuando tiene que cantar y descansar, quien la secuestra, el merodeo  si está perdida y el seguimiento al vizconde si lo ve estando perdida.</br>
 
 - **GhostBehavior** : toma de decisiones del fantasma a través de árbol de comportamiento.</br>
 
-## Diseño de la solución
+## DISEÑO DE LA SOLUCIÓN
 Lo que vamos a realizar para resolver esta práctica es implementar el comportamiento de los diferentes Scripts:
 
 **PLANTEAMINETO INICIAL**: </br>
@@ -116,14 +116,14 @@ Para el manejo de los comportamientos del **fantasma** haremos uso de la herrami
 </p>
 
  
- ### MÁQUINA DE ESTADOS MIEMBRO DEL PÚBLICO
+ ## MÁQUINA DE ESTADOS MIEMBRO DEL PÚBLICO
  
  <p align="center">
   <img src="https://github.com/IAV23-G10/IAV23-G10-P3/blob/main/Assets/ImagesForReadme/Publico_MaquinaEstados.png" width="600" />
 </p>
 
 
- ### ÁRBOL DE COMPORTAMIENTO FANTASMA
+ ## ÁRBOL DE COMPORTAMIENTO FANTASMA
 
  <p align="center">
   <img src="https://github.com/IAV23-G10/IAV23-G10-P3/blob/main/Assets/ImagesForReadme/Fantasma_MaquinaEstados.png" width="600" />
