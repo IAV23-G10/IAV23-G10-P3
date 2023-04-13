@@ -13781,8 +13781,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Movimiento con el clic del rat\xF3n\nC\xE1maras 1, 2, 3 y 4\nQ para capturar
-    cantante\nE para usar palancas\nEspacio para golpear"
+  m_Text: "Movimiento con el clic del rat\xF3n\nC\xE1maras 1, 2, 3 y 4\nclic derecho 
+    para capturar cantante\nclic derecho para usar palancas\nclic derecho  para golpear"
 --- !u!222 &1430622084
 CanvasRenderer:
   m_ObjectHideFlags: 0
