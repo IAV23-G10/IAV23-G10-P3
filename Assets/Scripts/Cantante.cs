@@ -61,14 +61,6 @@ public class Cantante : MonoBehaviour
         ghostTree = GameObject.FindWithTag("Ghost").GetComponent<BehaviorTree>();
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "celda")
-    //    {
-    //        encelda = true;
-    //    }
-    //}
-
     public void Start()
     {
         agente.updateRotation = false;
