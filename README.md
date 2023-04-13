@@ -108,9 +108,8 @@ Para el manejo de los comportamientos de la **cantante** usaremos una maquina de
 
 Para el manejo de los comportamientos del **fantasma** haremos uso de la herramienta de "Behaviour tree" para controlar los diferentes estados
 
-Para el manejo de los comportamientos del **publico** haremos uso de la herramienta de "Behaviour tree" para controlar los diferentes estados
 
-### MÁQUINA DE ESTADOS CANTANTE
+## MÁQUINA DE ESTADOS CANTANTE
 
 <p align="center">
   <img src="https://github.com/IAV23-G10/IAV23-G10-P3/blob/main/Assets/ImagesForReadme/image.png" width="600" />
