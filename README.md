@@ -111,195 +111,23 @@ Para el manejo de los comportamientos del **publico** haremos uso de la herramie
 
 ### MÁQUINA DE ESTADOS CANTANTE
 
-El pseudocódigo del algoritmo de MÁQINA DE ESTADOS CANTANTE utilizado es:
-
-```python
-class MyFSM:
-
-    # Define the names for each state.
-    enum State:
-         PATROL
-         DEFEND
-         SLEEP
-
-    # The current state.
-    myState: State
-
-    function update():
-        # Find the correct state.
-        if myState == PATROL:
-             # Example transitions.
-             if canSeePlayer():
-                     myState = DEFEND
-             else if tired():
-                     myState = SLEEP
-
-        else if myState == DEFEND:
-             # Example transitions.
-             if not canSeePlayer():
-                     myState = PATROL
-
-        else if myState == SLEEP:
-             # Example transitions.
-             if not tired():
-                     myState = PATROL
-
-    function notifyNoiseHeard(volume: float):
-        if myState == SLEEP and volume > 10:
-                 myState = DEFEND
-
-```
-Boceto de lo que se intuye que vamos a realizar:</br></br>
 <p align="center">
   <img src="https://github.com/IAV23-G10/IAV23-G10-P3/blob/main/Assets/ImagesForReadme/image.png" width="600" />
 </p>
- (Pag 342.AI for Games)
- 
- 
- ### MÁQUINA DE ESTADOS FANTASMA
- Boceto de lo que se intuye que vamos a realizar:</br></br>
- <p align="center">
-  <img src="https://github.com/IAV23-G10/IAV23-G10-P3/blob/main/Assets/ImagesForReadme/Fantasma_MaquinaEstados.png" width="600" />
-</p>
+
  
  ### MÁQUINA DE ESTADOS MIEMBRO DEL PÚBLICO
- Boceto de lo que se intuye que vamos a realizar:</br></br>
+ 
  <p align="center">
   <img src="https://github.com/IAV23-G10/IAV23-G10-P3/blob/main/Assets/ImagesForReadme/Publico_MaquinaEstados.png" width="600" />
 </p>
 
 
- ### ÁRBOL DE COMPORTAMIENTO 
- 
-El pseudocódigo del algoritmo de ÁRBOL DE COMPORTAMIENTO es:
+ ### ÁRBOL DE COMPORTAMIENTO FANTASMA
 
-```python
-
-class DecisionTreeNode:
-    # Recursively walk through the tree.
-    function makeDecision() -> DecisionTreeNode
-
-class Action extends DecisionTreeNode:
-    function makeDecision() -> DecisionTreeNode:
-       return this
-
-class Decision extends DecisionTreeNode:
-    trueNode: DecisionTreeNode
-    falseNode: DecisionTreeNode
-
-    # Defined in subclasses, with the appropriate type.
-    function testValue() -> any
-
-    # Perform the test.
-    function getBranch() -> DecisionTreeNode
-
-    # Recursively walk through the tree.
-    function makeDecision() -> DecisionTreeNode
-
-class FloatDecision extends Decision:
-    minValue: float
-    maxValue: float
-
-    function testValue() -> float
-
-    function getBranch() -> DecisionTreeNode:
-       if maxValue >= testValue() >= minValue:
-           return trueNode
-       else:
-           return falseNode
-
-```
-
-### TAREAS
-
-El pseudocódigo del algoritmo de TAREAS es:
-
-class Task:
-
-    # Return on success (true) or failure (false).
-    function run() -> bool
-
-class EnemyNear extends Task:
-
-    function run() -> bool:
-    	# Task fails if there is no enemy nearby.
-	return distanceToEnemy < 10
-
-class PlayAnimation extends Task:
-
-    animationId: int
-    speed: float = 1.0
-    
-    function run() -> bool:
-	if animationEngine.ready():
-	      animationEngine.play(animationId, speed)
-	      return true
-	else:
-	      # Task failure, the animation could not be played.
-	      return false
-
-class Selector extends Task:
-
-     children: Task[]
-
-     function run() -> bool:
-         for c in children:
-	      if c.run():
-	          return true
-         return false
-
-class Sequence extends Task:
-
-     children: Task[]
-	
-     function run() -> bool:
-	 for c in children:
-	       if not c.run():
-		       return false
-	return true
-
-### MERODEAR
-
-El pseudocódigo del algoritmo de MERODEAR es:
-
-```python
-class KinematicWander:
-
-    character: Static
-    maxSpeed: float
-    
-    timer: float    # 
-    maxTime: float  # how many seconds before selecting a new direction
-
-    # The maximum rotation speed we’d like, probably should be smaller
-    # than the maximum possible, for a leisurely change in direction.
-    maxRotation: float
-    
-    function getSteering() -> KinematicSteeringOutput:
-        result = new KinematicSteeringOutput()
-
-        # Get velocity from the vector form of the orientation.
-        result.velocity = maxSpeed * character.orientation.asVector()
-
-        if timer > maxTime:
-            # Change our orientation randomly.
-            result.rotation = randomBinomial() * maxRotation
-            timer = 0;
-        
-        else:
-            timer += Time.deltaTime
-
-     return result
-```
-
-Para empezar se declaran las variables que se utilizarán en la función, el objeto del character, la máxima velocidad, y la máxima rotación del character al avanzar.
-La función get Steering() toma como parámetro de output una variable de tipo Kinematic Steering Output
-La velocidad del resultado se calcula con la máxima velocidad multiplicado por la orientación actual del character como un vector.
-Después se randomiza la rotación con un randomBinomial().
-
-Se utiliza un randomBinomial() para generar la rotación.Esta función devuelve valores comprendidos entre -1 y 1 dando prioridad a los valores más cercanos al 0. Esto significa que nuestro personaje tendrá más probabilidad de moverse en su misma dirección con una poca rotación. Con esta función binomial evitamos que el personaje gire bruscamente, aunque esto puede llegar a ser posible si se da la probabilidad.
-
-(Pag 76.AI for Games)
+ <p align="center">
+  <img src="https://github.com/IAV23-G10/IAV23-G10-P3/blob/main/Assets/ImagesForReadme/Fantasma_MaquinaEstados.png" width="600" />
+</p>
 
 ## Pruebas y métricas
 
