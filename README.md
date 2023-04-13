@@ -87,7 +87,15 @@ En la escena de apertura se puede observar un mapa que muestra todas las habitac
 
 - **GhostCloseDoorAction** : acción de cerrar la puerta de la celda.</br>
 
+- **GhostChaseAction** : acción de seguir a la cantante para capturarla.</br>
+
 - **GhostLlevarCantante** : acción de ir a por la cantante para raptarla.</br>
+
+- **GhostBreakLights** : acción de romper las luces.</br>
+
+- **GhostWaitsInMusicRoom** : acción de esperar indefinidamente hasta volver a por la cantante.</br>
+
+- **NoLightCondition** : avisa de si hay público.</br>
 
 - **GhostSearchRandomAction** : permite al fantasma ir a una sala random establecida en BlackBoard.</br>
 
@@ -111,17 +119,16 @@ Para el manejo de los comportamientos del **fantasma** haremos uso de la herrami
 
 ## MÁQUINA DE ESTADOS CANTANTE
 
-<p align="center">
-  <img src="https://github.com/IAV23-G10/IAV23-G10-P3/blob/main/Assets/ImagesForReadme/image.png" width="600" />
-</p>
-
- 
- ## MÁQUINA DE ESTADOS MIEMBRO DEL PÚBLICO
- 
- <p align="center">
-  <img src="https://github.com/IAV23-G10/IAV23-G10-P3/blob/main/Assets/ImagesForReadme/Publico_MaquinaEstados.png" width="600" />
-</p>
-
+<table>
+  <tr>
+    <th>BOCETO INICIAL</th>
+    <th>RESULTADO FINAL</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/IAV23-G10/IAV23-G10-P3/blob/main/Assets/ImagesForReadme/image.png" /></td>
+    <td><img src="https://github.com/IAV23-G10/IAV23-G10-P3/blob/main/Assets/ImagesForReadme/MaquinaEstados.png"/></td>
+  </tr>
+</table>
 
  ## ÁRBOL DE COMPORTAMIENTO FANTASMA
 
@@ -131,17 +138,23 @@ Para el manejo de los comportamientos del **fantasma** haremos uso de la herrami
 
 ## Pruebas y métricas
 
-- [Vídeo con la batería de pruebas](https://youtu.be/zTtAYfi_qis)
+[Vídeo con la batería de pruebas](https://youtu.be/zTtAYfi_qis) </br>
+
 En el video se pueden ver las siguientes pruebas:
 
 - **Apartado A**: </br>
 - **Apartado B**:</br>
-- **Apartado C y E**:</br>
+- **Apartado C**:</br>
 - **Apartado D**: </br>
+- **Apartado E**: </br>
 
 ## Ampliaciones
 
 Parte estética:
+
+  - Cambio en la textura del público
+  - Cambio en la textura de las paredes
+  - Un miembro del público tiene la cabeza cuadrada
 
 
 
@@ -152,15 +165,14 @@ Las tareas se han realizado y el esfuerzo ha sido repartido entre los autores.
 | Estado  |  Tarea  |  Fecha  |  
 |:-:|:--|:-:|
 | ✔ | Diseño: Primer borrador | 23-3-2023 |
-| ✔ | Característica A: movimiento con click izquierdo del ratón y click derecho para interactuar | 31-4-2023 |
+| ✔ | Característica A: movimiento con click izquierdo del ratón y click derecho para interactuar | 31-3-2023 |
 | ✔ | Característica B: Caida de la lampara y movimiento espectadores| 9-4-2023 |
 | ✔ | Característica C: Maquina de estados cantante| 11-4-2023 |
 | ✔ | Característica D: Árbol de comportamiento fantasma| 12-4-2023 |
 | ✔ | Característica E: Sistema sensorial fantasma| 11-4-2023 |
 | ✔ | Característica E: personaje navega y se mueve automáticamente en dirección a la baldosa| 8-4-2023 |
-|   | ... | |
 |  | OPCIONAL |  |
-| ✔ |   Ésstetica proyecto | 30-3-2023 |
+| ✔ |   Éstetica proyecto | 30-3-2023 |
 
 
 
