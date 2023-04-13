@@ -324,15 +324,15 @@ Las tareas se han realizado y el esfuerzo ha sido repartido entre los autores.
 | Estado  |  Tarea  |  Fecha  |  
 |:-:|:--|:-:|
 | ✔ | Diseño: Primer borrador | 23-3-2023 |
-| :x: | Característica A: movimiento con click izquierdo del ratón y click derecho para interactuar | - |
-| :x: | Característica B: Caida de la lampara y movimiento espectadores| - |
-| :x: | Característica C: Maquina de estados cantante| - |
-| :x: | Característica D: Árbol de comportamiento fantasma| - |
-| :x: | Característica E: Sistema sensorial fantasma| - |
-| :x: | Característica E: personaje navega y se mueve automáticamente en dirección a la baldosa| - |
+| :x: | Característica A: movimiento con click izquierdo del ratón y click derecho para interactuar | 31-4-2023 |
+| :x: | Característica B: Caida de la lampara y movimiento espectadores| 9-4-2023 |
+| :x: | Característica C: Maquina de estados cantante| 11-4-2023 |
+| :x: | Característica D: Árbol de comportamiento fantasma| 12-4-2023 |
+| :x: | Característica E: Sistema sensorial fantasma| 11-4-2023 |
+| :x: | Característica E: personaje navega y se mueve automáticamente en dirección a la baldosa| 8-4-2023 |
 |   | ... | |
 |  | OPCIONAL |  |
-| :x: |   Ésstetica proyecto | - |
+| :x: |   Ésstetica proyecto | 30-3-2023 |
 | :x: |  | - |
 | :x: |  | - |
 
