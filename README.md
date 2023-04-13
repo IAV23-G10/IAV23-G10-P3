@@ -131,7 +131,6 @@ Para el manejo de los comportamientos del **fantasma** haremos uso de la herrami
 </table>
 
  ## ÁRBOL DE COMPORTAMIENTO FANTASMA
-
 <table>
   <tr>
     <th>BOCETO INICIAL</th>
