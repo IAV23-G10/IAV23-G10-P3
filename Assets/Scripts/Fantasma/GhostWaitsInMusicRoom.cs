@@ -19,6 +19,9 @@ using UnityEngine.AI;
 
 public class GhostWaitsInMusicRoom : Action
 {
+    [SerializeField]
+    GameBlackboard gameBlackboard;
+
     NavMeshAgent agent;
     public GameObject musicRoom;
     float captureRange = 1.5f;
@@ -37,7 +40,12 @@ public class GhostWaitsInMusicRoom : Action
     public override TaskStatus OnUpdate()
     {
         //Debug.Log("cantante.cantando = " +Vector3.Distance(transform.position, musicRoom.transform.position));
-
+        if (gameBlackboard.pianoRoto())
+        {
+            // Dejar de ser su secuestrador
+            //singer.DeSecuestrada();
+            return TaskStatus.Failure;
+        }
         if (TargetReached(musicRoom.transform.position, captureRange))
         {
             agent.SetDestination(musicRoom.transform.position);
@@ -52,6 +60,7 @@ public class GhostWaitsInMusicRoom : Action
                 return TaskStatus.Success;
             else
                 return TaskStatus.Running;
+           
         }
         else
         {

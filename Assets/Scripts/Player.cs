@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
                 cantante.DeSecuestrada();
             }
 
-            else cantante.Secuestrada(gameObject);
+            else if (Vector3.Distance(cantante.transform.position, transform.position) <= 3f) cantante.Secuestrada(gameObject);
         }
     }
 }

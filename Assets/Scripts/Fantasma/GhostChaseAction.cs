@@ -45,7 +45,7 @@ public class GhostChaseAction : Action
         int a = agent.areaMask, b = 1 << NavMesh.GetAreaFromName("Escenario");
         agent.areaMask = (a | b);
 
-
+        if(singer.GetComponent<Cantante>().GetCapturada()) return TaskStatus.Success;
         //Si el piano esta roto vamos a por el
         if (gameBlackboard.pianoRoto())
         {

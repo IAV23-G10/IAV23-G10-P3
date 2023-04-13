@@ -31,6 +31,7 @@ public class GhostReturnJail : Action
 
     public override TaskStatus OnUpdate()
     {
+       
 
         //Si el piano esta roto vamos a por el
         if (gameBlackboard.pianoRoto())

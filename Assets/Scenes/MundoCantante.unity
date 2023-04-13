@@ -2185,6 +2185,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 400202, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.75
+      objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -18910,7 +18914,7 @@ MonoBehaviour:
         Light Condition","Instant":true},{"Type":"GhostChaseAction","NodeData":{"Offset":"(-32.0210953,165.517273)"},"ID":18,"Name":"Ghost
         Chase Action","Instant":true,"NavMeshAgentagent":2,"GameObjectsinger":3,"GameBlackboardgameBlackboard":4},{"Type":"GhostReturnJail","NodeData":{"Offset":"(157.978775,165.517273)"},"ID":19,"Name":"Ghost
         Return Jail","Instant":true,"GameBlackboardgameBlackboard":5,"Transformjail":6,"TransformjailLever":7,"NavMeshAgentagent":8,"Cantantesinger":9},{"Type":"GhostWaitsInMusicRoom","NodeData":{"Offset":"(331.907654,178.237213)"},"ID":20,"Name":"Ghost
-        Waits In Music Room","Instant":true,"GameObjectmusicRoom":10},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(499.7234,151.930634)"},"ID":21,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":2},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]},{"Type":"GhostBreakLights","NodeData":{"Offset":"(247.037018,178.518509)"},"ID":22,"Name":"Ghost
+        Waits In Music Room","Instant":true,"GameBlackboardgameBlackboard":10,"GameObjectmusicRoom":11},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(499.7234,151.930634)"},"ID":21,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":2},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]},{"Type":"GhostBreakLights","NodeData":{"Offset":"(247.037018,178.518509)"},"ID":22,"Name":"Ghost
         Break Lights","Instant":true}]}]}}'
       fieldSerializationData:
         typeName: []
@@ -18928,6 +18932,7 @@ MonoBehaviour:
         - {fileID: 1934984353}
         - {fileID: 2536986899609911513}
         - {fileID: 373871681117018882}
+        - {fileID: 2002151600}
         - {fileID: 984640642}
         byteData: 
         byteDataArray: 
