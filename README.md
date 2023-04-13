@@ -138,7 +138,7 @@ Para el manejo de los comportamientos del **fantasma** haremos uso de la herrami
 
 ## Pruebas y métricas
 
-[Vídeo con la batería de pruebas](https://youtu.be/zTtAYfi_qis) </br>
+[Vídeo con la batería de pruebas](https://youtu.be/G2lqGw3u8RQ) </br>
 
 En el video se pueden ver las siguientes pruebas:
 
