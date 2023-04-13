@@ -45,9 +45,9 @@ public class Cantante : MonoBehaviour
     public Transform Bambalinas;
     public Transform Celda;
     public Transform Vizconde;
+
     // La blackboard
     public GameBlackboard bb;
-    bool encelda = false;
 
     Player player;
     BehaviorTree ghostTree;
@@ -60,13 +60,14 @@ public class Cantante : MonoBehaviour
 
         ghostTree = GameObject.FindWithTag("Ghost").GetComponent<BehaviorTree>();
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "celda")
-        {
-            encelda = true;
-        }
-    }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "celda")
+    //    {
+    //        encelda = true;
+    //    }
+    //}
 
     public void Start()
     {
@@ -138,7 +139,6 @@ public class Cantante : MonoBehaviour
     public void Descansar()
     {
         cantando = false;
-        // IMPLEMENTAR
     }
 
     // Comprueba si tiene que dejar de descansar
@@ -149,13 +149,6 @@ public class Cantante : MonoBehaviour
         if (tiempoComienzoDescanso >= tiempoDeDescanso) { tiempoComienzoDescanso = 0; return true; }
 
         return false;
-    }
-
-    // Comprueba si se encuentra en la celda
-    public bool EstaEnCelda()
-    {
-        // IMPLEMENTAR
-        return encelda;
     }
 
     // Comprueba si esta en un sitio desde el cual sabe llegar al escenario
@@ -201,7 +194,6 @@ public class Cantante : MonoBehaviour
     // Genera un nuevo punto de merodeo cada vez que agota su tiempo de merodeo actual
     public void IntentaMerodear()
     {
-        // IMPLEMENTAR
         tiempoComienzoMerodeo += Time.deltaTime;
 
         if (tiempoComienzoMerodeo >= tiempoDeMerodeo)
@@ -225,21 +217,5 @@ public class Cantante : MonoBehaviour
     public void setCapturada(bool cap)
     {
         capturada = cap;
-    }
-
-    public GameObject sigueFantasma()
-    {
-        // IMPLEMENTAR
-        return null;
-    }
-
-    public void sigueVizconde()
-    {
-        // IMPLEMENTAR
-    }
-
-    private void nuevoObjetivo(GameObject obj)
-    {
-        // IMPLEMENTAR
     }
 }

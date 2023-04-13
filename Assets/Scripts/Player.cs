@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
         if (anim.GetBool("Attack"))
             anim.SetBool("Attack", false);
         //realiza la accion "usar" (para arreglas luces y tocar piano)
-        if (Input.GetKeyDown(KeyCode.E) && ultimaAccion <=0)
+        if (Input.GetMouseButtonDown(1) && ultimaAccion <=0)
         {
             ultimaAccion = tiempoEsperaAccion;
             areaAccion.SetActive(true);
@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
             anim.SetBool("Attack", false);
         }
         //realiza la accion "atacar" (para atacar al fantasma)
-        if (Input.GetKeyDown(KeyCode.Space) && ultimoAtaque <=0)
+        if (Input.GetMouseButtonDown(1) && ultimoAtaque <=0)
         {
             ultimoAtaque = tiempoEsperaAtaque;
             areaAtaque.SetActive(true);
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
             anim.SetBool("Attack", false);
         }
         //realiza la acción de captura
-        if (Input.GetKeyDown(KeyCode.Q) && ultimaAccion <= 0)
+        if (Input.GetMouseButtonDown(1) && ultimaAccion <= 0)
         {
             ultimaAccion = tiempoEsperaAccion;
             areaCaptura.SetActive(true);
@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
         }
         anim.SetFloat("Speed", GetComponent<NavMeshAgent>().velocity.magnitude);
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetMouseButtonDown(1))
         {
             if (cantante.GetCapturada())
             {
